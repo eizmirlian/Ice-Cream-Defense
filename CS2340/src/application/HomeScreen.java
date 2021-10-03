@@ -105,8 +105,7 @@ public class HomeScreen extends Application {
     }
 
     public boolean verifyName(String name) {
-        name = name.trim();
-        return name != "" && name != null && name != "Please Enter Your Name";
+        return name != null && name.trim() != "";
     }
 
     private Button makeHomeScreen(Stage primaryStage) {
