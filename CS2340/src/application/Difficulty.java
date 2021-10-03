@@ -1,7 +1,7 @@
 package application;
 
 enum Difficulty {
-	EASY,
-	MEDIUM,
-	HARD
+  EASY,
+  MEDIUM,
+  HARD
 }
