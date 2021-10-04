@@ -79,18 +79,19 @@ public class HomeScreen extends Application {
 
         confirm.setOnAction(e -> {
             if (verifyName(playerName.getText()) && difficulty.getValue() != null) {
+                int diffModifier = setModifier(difficulty.getValue());
                 switch (difficulty.getValue()) {
                 case EASY:
-                    health.setText("Tower\nHealth: 200");
-                    money.setText("Money: 250");
+                    health.setText("Tower\nHealth: " + 50 * diffModifier);
+                    money.setText("Money: " + 50 * (diffModifier + 1));
                     break;
                 case MEDIUM:
-                    health.setText("Tower\nHealth: 150");
-                    money.setText("Money: 200");
+                    health.setText("Tower\nHealth: " + 50 * diffModifier);
+                    money.setText("Money: " + 50 * (diffModifier + 1));
                     break;
                 case HARD:
-                    health.setText("Tower\nHealth: 100");
-                    money.setText("Money: 150");
+                    health.setText("Tower\nHealth: " + 50 * diffModifier);
+                    money.setText("Money: " + 50 * (diffModifier + 1));
                     break;
                 default:
                     break;
@@ -102,6 +103,18 @@ public class HomeScreen extends Application {
         });
 
         primaryStage.show();
+    }
+
+    public int setModifier(enum difficulty) {
+        if (difficulty.getValue() == EASY) {
+            return 4;
+        } else if (difficulty.getValue() == MEDIUM) {
+            return 3;
+        } else if (difficulty.getValue() == HARD) {
+            return 2;
+        } else {
+            return 0;
+        }
     }
 
     public boolean verifyName(String name) {
