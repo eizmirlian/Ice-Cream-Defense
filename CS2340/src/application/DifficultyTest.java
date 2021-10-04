@@ -1,3 +1,4 @@
+package application;
 import org.junit.Test;
 import org.junit.Assert;
 
@@ -6,25 +7,24 @@ public class DifficultyTest {
     private final int defaultHealth = 100;
     private final int defaultMoney = 1000;
 
-    public double jgDifFactorTest(int diff) {
-        if (diff == 1) {
+    public double jgDifFactorTest(Difficulty diff) {
+        if (diff == Difficulty.EASY) {
             return 1.0;
-        } else if (diff == 2) {
+        } else if (diff == Difficulty.MEDIUM) {
             return 0.8;
-        } else if (diff == 3) {
+        } else if (diff == Difficulty.HARD) {
             return 0.5;
-        } else {
-            throw new IllegalArgumentException("Invalid Input Value for Difficulty");
         }
+        return 0;
     }
 
-    @Test(timeout = 200)
+    @Test
     public void jgDiffTest() {
-        Assert.assertEquals((int) (defaultHealth * jgDifFactorTest(1)), 100);
-        Assert.assertEquals((int) (defaultMoney * jgDifFactorTest(1)), 1000);
-        Assert.assertEquals((int) (defaultHealth * jgDifFactorTest(2)), 80);
-        Assert.assertEquals((int) (defaultMoney * jgDifFactorTest(2)), 800);
-        Assert.assertEquals((int) (defaultHealth * jgDifFactorTest(2)), 50);
-        Assert.assertEquals((int) (defaultMoney * jgDifFactorTest(2)), 500);
+        Assert.assertEquals((int) (defaultHealth * jgDifFactorTest(Difficulty.EASY)), 100);
+        Assert.assertEquals((int) (defaultMoney * jgDifFactorTest(Difficulty.EASY)), 1000);
+        Assert.assertEquals((int) (defaultHealth * jgDifFactorTest(Difficulty.MEDIUM)), 80);
+        Assert.assertEquals((int) (defaultMoney * jgDifFactorTest(Difficulty.MEDIUM)), 800);
+        Assert.assertEquals((int) (defaultHealth * jgDifFactorTest(Difficulty.HARD)), 50);
+        Assert.assertEquals((int) (defaultMoney * jgDifFactorTest(Difficulty.HARD)), 500);
     }
 }
