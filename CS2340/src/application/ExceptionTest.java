@@ -8,8 +8,9 @@ class ExceptionTest {
 
     @Test
     void testNoException() {
+        String[] args = null;
         try {
-            main();
+            HomeScreen.main(args);
         }
         catch (Exception e){
             fail("No exception should have bneen thrown");
