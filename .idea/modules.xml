@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CS2340/CS2340.iml" filepath="$PROJECT_DIR$/CS2340/CS2340.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Team45-TowerDefense.iml" filepath="$PROJECT_DIR$/.idea/Team45-TowerDefense.iml" />
     </modules>
   </component>
