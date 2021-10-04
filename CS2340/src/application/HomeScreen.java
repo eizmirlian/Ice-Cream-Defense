@@ -118,7 +118,7 @@ public class HomeScreen extends Application {
     }
 
     public boolean verifyName(String name) {
-        return name != null && name.trim() != "";
+        return name != null && !(name.trim().equals(""));
     }
 
     private Button makeHomeScreen(Stage primaryStage) {
