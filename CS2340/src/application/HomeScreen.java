@@ -105,12 +105,12 @@ public class HomeScreen extends Application {
         primaryStage.show();
     }
 
-    public int setModifier(enum difficulty) {
-        if (difficulty.getValue() == EASY) {
+    public int setModifier(Difficulty diff) {
+        if (diff.getValue() == EASY) {
             return 4;
-        } else if (difficulty.getValue() == MEDIUM) {
+        } else if (diff.getValue() == MEDIUM) {
             return 3;
-        } else if (difficulty.getValue() == HARD) {
+        } else if (diff.getValue() == HARD) {
             return 2;
         } else {
             return 0;
