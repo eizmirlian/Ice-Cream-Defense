@@ -106,11 +106,11 @@ public class HomeScreen extends Application {
     }
 
     public int setModifier(Difficulty diff) {
-        if (diff.getValue() == EASY) {
+        if (diff == Difficulty.EASY) {
             return 4;
-        } else if (diff.getValue() == MEDIUM) {
+        } else if (diff == Difficulty.MEDIUM) {
             return 3;
-        } else if (diff.getValue() == HARD) {
+        } else if (diff == Difficulty.HARD) {
             return 2;
         } else {
             return 0;
