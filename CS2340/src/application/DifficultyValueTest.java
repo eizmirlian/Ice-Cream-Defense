@@ -1,20 +1,25 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.Test;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-class DifficultyValueTest {
+public class DifficultyValueTest {
 
     @Test
-    void ethanDifficultyValue() {
+    public void ethanDifficultyValue() {
         Difficulty easy = Difficulty.EASY;
         Difficulty medium = Difficulty.MEDIUM;
         Difficulty hard = Difficulty.HARD;
         HomeScreen homeScreen = new HomeScreen();
-        assertEquals(4, homeScreen.setModifier(easy));
-        assertEquals(3, homeScreen.setModifier(medium));
-        assertEquals(2, homeScreen.setModifier(hard));
-        assertEquals(0, homeScreen.setModifier(null));
+        Assert.assertEquals("Health: 200", "Health: " + (50 * homeScreen.setModifier(easy)));
+        Assert.assertEquals("Health: 150", "Health: " + (50 * homeScreen.setModifier(medium)));
+        Assert.assertEquals("Health: 100", "Health: " + (50 * homeScreen.setModifier(hard)));
+        Assert.assertEquals("Health: 0", "Health: " + (50 * homeScreen.setModifier(null)));
+        Assert.assertEquals("Money: 250", "Health: " + (50 * (homeScreen.setModifier(easy) + 1)));
+        Assert.assertEquals("Money: 200", "Health: " + (50 * (homeScreen.setModifier(medium) + 1)));
+        Assert.assertEquals("Money: 150", "Health: " + (50 * (homeScreen.setModifier(hard) + 1)));
+        Assert.assertEquals("Money: 50", "Health: " + (50 * (homeScreen.setModifier(null) + 1)));
     }
 }
