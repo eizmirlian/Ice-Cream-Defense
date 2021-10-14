@@ -11,7 +11,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 public class HomeScreen extends Application {
-
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -21,7 +21,23 @@ public class HomeScreen extends Application {
         primaryStage.setTitle("Tower Defense");
         primaryStage.setResizable(false);
 
-        Button start = makeHomeScreen(primaryStage);
+        BorderPane homeRoot = new BorderPane();
+        homeRoot.setPadding(new Insets(50));
+        homeRoot.setStyle("-fx-background-color: "
+            + "linear-gradient(from 25% 25% to 100% 100%, black, blue)");
+        Text title = new Text("BEEJ'S TOWER DEFENSE");
+        title.setStyle("-fx-fill: white;-fx-font: 48px Stencil;");
+        Button start = new Button("Start");
+        start.setStyle(
+                "-fx-background-color: green;-fx-text-fill: white;"
+                + "-fx-background-radius: 10;-fx-font: 36px Impact");
+        homeRoot.setTop(title);
+        BorderPane.setAlignment(title, Pos.CENTER);
+        homeRoot.setCenter(start);
+        Scene homepage = new Scene(homeRoot, 1000, 800);
+        primaryStage.setScene(homepage);
+        
+        
 
         BorderPane configRoot = new BorderPane();
         configRoot.setPadding(new Insets(50));
@@ -58,86 +74,18 @@ public class HomeScreen extends Application {
         configRoot.setBottom(errorMessage);
         BorderPane.setAlignment(errorMessage, Pos.CENTER);
         Scene config = new Scene(configRoot, 1000, 800);
-
-        Image bkgnd = new Image("file:src/TowerDefenseBackground.png");
-        HBox initGameScreen = new HBox();
-        initGameScreen.setBackground(new Background(new BackgroundImage(bkgnd,
-            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT)));
-        Text health = new Text("Tower\nHealth");
-        health.setStyle("-fx-font: 24px Impact");
-        Text money = new Text("Money");
-        money.setStyle("-fx-font: 24px Impact");
-        initGameScreen.getChildren().addAll(health, money);
-        HBox.setMargin(health, new Insets(12));
-        HBox.setMargin(money, new Insets(12, 12, 12, 725));
-        Scene initGame = new Scene(initGameScreen, 1000, 800);
+        
+        
+        
+        
 
         start.setOnAction(e -> {
             primaryStage.setScene(config);
         });
 
-        confirm.setOnAction(e -> {
-            if (verifyName(playerName.getText()) && difficulty.getValue() != null) {
-                int diffModifier = setModifier(difficulty.getValue());
-                switch (difficulty.getValue()) {
-                case EASY:
-                    health.setText("Tower\nHealth: " + 50 * diffModifier);
-                    money.setText("Money: " + 50 * (diffModifier + 1));
-                    break;
-                case MEDIUM:
-                    health.setText("Tower\nHealth: " + 50 * diffModifier);
-                    money.setText("Money: " + 50 * (diffModifier + 1));
-                    break;
-                case HARD:
-                    health.setText("Tower\nHealth: " + 50 * diffModifier);
-                    money.setText("Money: " + 50 * (diffModifier + 1));
-                    break;
-                default:
-                    break;
-                }
-                primaryStage.setScene(initGame);
-            } else {
-                errorMessage.setVisible(true);
-            }
-        });
+        confirm.setOnAction(new ConfigEventHandler(difficulty, playerName, errorMessage, primaryStage));
+            
 
         primaryStage.show();
     }
-
-    public int setModifier(Difficulty diff) {
-        if (diff == Difficulty.EASY) {
-            return 4;
-        } else if (diff == Difficulty.MEDIUM) {
-            return 3;
-        } else if (diff == Difficulty.HARD) {
-            return 2;
-        } else {
-            return 0;
-        }
-    }
-
-    public boolean verifyName(String name) {
-        return name != null && !(name.trim().equals(""));
-    }
-
-    private Button makeHomeScreen(Stage primaryStage) {
-        BorderPane homeRoot = new BorderPane();
-        homeRoot.setPadding(new Insets(50));
-        homeRoot.setStyle("-fx-background-color: "
-            + "linear-gradient(from 25% 25% to 100% 100%, black, blue)");
-        Text title = new Text("BEEJ'S TOWER DEFENSE");
-        title.setStyle("-fx-fill: white;-fx-font: 48px Stencil;");
-        Button start = new Button("Start");
-        start.setStyle(
-                "-fx-background-color: green;-fx-text-fill: white;"
-                + "-fx-background-radius: 10;-fx-font: 36px Impact");
-        homeRoot.setTop(title);
-        BorderPane.setAlignment(title, Pos.CENTER);
-        homeRoot.setCenter(start);
-        Scene homepage = new Scene(homeRoot, 1000, 800);
-        primaryStage.setScene(homepage);
-        return start;
-    }
-
 }
