@@ -34,7 +34,7 @@ public class HomeScreen extends Application {
         homeRoot.setTop(title);
         BorderPane.setAlignment(title, Pos.CENTER);
         homeRoot.setCenter(start);
-        Scene homepage = new Scene(homeRoot, 1000, 800);
+        Scene homepage = new Scene(homeRoot, 1500, 1200);
         primaryStage.setScene(homepage);
         
         
@@ -73,7 +73,7 @@ public class HomeScreen extends Application {
         configRoot.setCenter(setupContainer);
         configRoot.setBottom(errorMessage);
         BorderPane.setAlignment(errorMessage, Pos.CENTER);
-        Scene config = new Scene(configRoot, 1000, 800);
+        Scene config = new Scene(configRoot, 1500, 1200);
         
         
         

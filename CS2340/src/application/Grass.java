@@ -8,12 +8,19 @@ public class Grass {
     private Tower currentTower;
     
     public Grass(int row, int column, Button click) {
-        pos[0] = row;
-        pos[1] = column;
-        clickable = click;
+        this.pos[0] = row;
+        this.pos[1] = column;
+        this.clickable = click;
     }
     
     public Tower getTower() {
-        return currentTower;
+        return this.currentTower;
+    }
+    
+    public void buyTower(Tower t) {
+        this.currentTower = t;
+    }
+    public Button getButton() {
+        return this.clickable;
     }
 }

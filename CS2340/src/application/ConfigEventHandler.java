@@ -14,6 +14,8 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
     private TextField playerName;
     private Text error;
     private Stage primaryStage;
+    private static Scene gameScreen;
+    private static Monument iceCreamTruck;
     
     public ConfigEventHandler(ComboBox<Difficulty> difficulty, TextField playerName, Text error, Stage primaryStage) {
         this.difficulty = difficulty;
@@ -28,7 +30,6 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
         Difficulty diff = this.difficulty.getValue();
         if (verifyName(name) && diff != null) {
             int diffModifier = setModifier(diff);
-            Monument iceCreamTruck;
             iceCreamTruck = new Monument(50 * diffModifier, 50 * (diffModifier + 1));
             this.levelGen(diff);
         } else {
@@ -53,29 +54,31 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
     }
     
     private void levelGen(Difficulty diff) {
-        Level level1 = new Level(".....0............0."
-                               + ".....v............v."
-                               + ".....v............v."
-                               + ".....v............v."
-                               + ".....v............v."
-                               + ".....v.......v<<<<<."
-                               + ".....v.......v......"
-                               + "(>>>>v.......v......"
-                               + ".....v.......v......"
-                               + ".....v.......v......"
-                               + ".....v.......v......"
-                               + ".....v.......>>>>v.."
-                               + ".....v...........v.."
-                               + ".....v...........v.."
-                               + ".....v...........v.."
-                               + ".....v........v<<<.."
-                               + "....oooo......v....."
-                               + "(>>>oooo......v....."
-                               + "....oooo<<<<<<<....."
-                               + "....oooo............", diff, 20, 20, primaryStage);
+        Level level1 = new Level("......0........"
+                               + "......v<<<<<<<)"
+                               + "......v........"
+                               + "......v........"
+                               + "(>>>>>v........"
+                               + "......v........"
+                               + "......v........"
+                               + "......oo......."
+                               + "......oo......."
+                               + ".......^......."
+                               + ".......^......."
+                               + "(>>>>>>^......."
+                               + ".......^......."
+                               + ".......^<<<<<<)"
+                               + ".......8.......", diff, 15, 15, primaryStage);
         level1.generateLevel();
-        Scene initGame = new Scene(level1, 1000, 800);
-        primaryStage.setScene(initGame);
+        gameScreen = new Scene(level1, 1500, 1200);
+        
+        primaryStage.setScene(gameScreen);
+    }
+    public static Scene getScene() {
+        return gameScreen;
+    }
+    public static Monument getTruck() {
+        return iceCreamTruck;
     }
 
 }

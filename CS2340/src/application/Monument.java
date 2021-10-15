@@ -3,14 +3,15 @@ package application;
 public class Monument {
     
     private int health;
-    private int money;
+    private double money;
+    private boolean displaying = true;
     
     public Monument(int health, int money) {
         this.health = health;
         this.money = money;
     }
     
-    public void buy(int price) {
+    public void buy(double price) {
         this.money -= price;
     }
     
@@ -18,11 +19,17 @@ public class Monument {
         this.health -= dmg;
     }
     
-    public int getMoney() {
+    public double getMoney() {
         return this.money;
     }
     
     public int getHealth() {
         return this.health;
+    }
+    public boolean getDisplay() {
+        return this.displaying;
+    }
+    public void setDisplay(boolean displaying) {
+        this.displaying = displaying;
     }
 }
