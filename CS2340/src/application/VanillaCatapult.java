@@ -1,12 +1,21 @@
 package application;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class VanillaCatapult implements Tower {
 
     private int range;
     private int damage;
     private int fireRate;
-    private static int price = 100;
+    private ImageView icon = new ImageView(new Image("file:src/truck.png"));
+    private int price = 100;
+    private Difficulty diff;
     private static String description = "A catapult which launches scoops\nof vanilla ice cream at enemies!\nStandard damage and rate of\nfire, with a lot of range.";
+    
+    public VanillaCatapult(Difficulty diff) {
+        this.diff = diff;
+    }
     @Override
     public void fire() {
         // TODO Auto-generated method stub
@@ -24,11 +33,11 @@ public class VanillaCatapult implements Tower {
         // TODO Auto-generated method stub
 
     }
-    public static String getDescription() {
+    public String getDescription() {
         return description;
     }
-    public static double getPrice(Difficulty diff) {
-        switch (diff) {
+    public double getPrice() {
+        switch (this.diff) {
             case EASY:
                 return price * 1;
             case MEDIUM:
@@ -37,5 +46,10 @@ public class VanillaCatapult implements Tower {
                 return price * 1.5;
         }
         return 0;
+    }
+    public ImageView getIcon() {
+        this.icon.setFitWidth(100);
+        this.icon.setFitHeight(80);
+        return this.icon;
     }
 }

@@ -3,6 +3,7 @@ package application;
 import java.util.LinkedList;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -28,6 +29,30 @@ public class Level extends GridPane {
     public void generateLevel() {
         int col = 0;
         int row = 0;
+        this.setStyle("-fx-background-color: green");
+        Image truckPic = new Image("file:src/truck.png");
+        ImageView truck = new ImageView(truckPic);
+        truck.setFitWidth(190);
+        truck.setFitHeight(150);
+        Button monument = new Button();
+        monument.setStyle("-fx-background-color: green");
+        Monument iceCreamTruck = ConfigEventHandler.getTruck();
+        monument.setGraphic(truck);
+        monument.setOnAction(e -> {
+            if (iceCreamTruck.getDisplay()) {
+                monument.setGraphic(null);
+                monument.setText("Money: " + Double.toString(iceCreamTruck.getMoney())
+                + "\nHealth: " + Integer.toString(iceCreamTruck.getHealth()));
+                monument.setStyle("-fx-background-color: gray;-fx-text-fill: yellow;"
+                + "-fx-font: 24px Stencil;-fx-background-radius: 0");
+                iceCreamTruck.setDisplay(false);
+            } else {
+                monument.setStyle("-fx-background-color: green");
+                iceCreamTruck.setDisplay(true);
+                monument.setText("");
+                monument.setGraphic(truck);
+            }
+        });
         Button grass;
         Path path;
         Path entry;
@@ -42,7 +67,7 @@ public class Level extends GridPane {
             switch (c) {
                 case '.':
                     grass = new Button();
-                    grass.setMinSize(50, 40);
+                    grass.setMinSize(1500/this.width, 1200/this.height);
                     grass.setStyle("-fx-background-color: green;-fx-background-radius: 0;-fx-border-color: black");
                     this.add(grass, col, row);
                     g = new Grass(row, col, grass);
@@ -103,8 +128,7 @@ public class Level extends GridPane {
                     break;
                 case 'o':
                     if (!truckPlaced) {
-                        ImageView truck = new ImageView();
-                        this.add(truck, col, row, 4, 4);
+                        this.add(monument, col, row, 2, 2);
                         truckPlaced = true;
                     }
                     col++;
@@ -116,9 +140,9 @@ public class Level extends GridPane {
     
     private void makePathButton(int col, int row) {
         Button path = new Button("*");
-        path.setMinSize(50, 40);
+        path.setMinSize(1500/this.width, 1200/this.height);
         path.setStyle("-fx-background-color: gray;-fx-text-fill: yellow;"
-                + "-fx-font: 15px Impact;-fx-background-radius: 0");
+                + "-fx-font: 21px Impact;-fx-background-radius: 0");
         this.add(path, col, row);
     }
     

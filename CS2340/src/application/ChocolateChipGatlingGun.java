@@ -1,12 +1,22 @@
 package application;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class ChocolateChipGatlingGun implements Tower {
 
     private int range;
     private int damage;
     private int fireRate;
-    private static int price = 170;
-    private static String description = "A gatling gun which shoots\na barrage of chocolate chips\nat enemies! Medium damage with\na high rate of fire and low range";
+    private int price = 170;
+    private ImageView icon = new ImageView(new Image("file:src/truck.png"));
+    private String description = "A gatling gun which shoots\na barrage of chocolate chips\nat enemies! Medium damage with\na high rate of fire and low range";
+    private Difficulty diff;
+    
+    public ChocolateChipGatlingGun(Difficulty diff) {
+        this.diff = diff;
+    }
+    
     @Override
     public void fire() {
         // TODO Auto-generated method stub
@@ -24,11 +34,11 @@ public class ChocolateChipGatlingGun implements Tower {
         // TODO Auto-generated method stub
 
     }
-    public static String getDescription() {
+    public String getDescription() {
         return description;
     }
-    public static double getPrice(Difficulty diff) {
-        switch (diff) {
+    public double getPrice() {
+        switch (this.diff) {
             case EASY:
                 return price * 1;
             case MEDIUM:
@@ -37,6 +47,11 @@ public class ChocolateChipGatlingGun implements Tower {
                 return price * 1.5;
         }
         return 0;
+    }
+    public ImageView getIcon() {
+        this.icon.setFitWidth(100);
+        this.icon.setFitHeight(80);
+        return this.icon;
     }
 
 }

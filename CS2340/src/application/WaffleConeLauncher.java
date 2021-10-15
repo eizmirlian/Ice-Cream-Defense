@@ -1,12 +1,21 @@
 package application;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class WaffleConeLauncher implements Tower {
 
     private int range;
     private int damage;
     private int fireRate;
-    private static int price = 150;
-    private static String description = "A rocket launcher which fires\nwaffle cone rockets at enemies!\nHigh damage output with a low\nrate of fire and medium range.";
+    private int price = 150;
+    private ImageView icon = new ImageView(new Image("file:src/truck.png"));
+    private String description = "A rocket launcher which fires\nwaffle cone rockets at enemies!\nHigh damage output with a low\nrate of fire and medium range.";
+    private Difficulty diff;
+    
+    public WaffleConeLauncher(Difficulty diff) {
+        this.diff = diff;
+    }
     
     @Override
     public void fire() {
@@ -26,11 +35,11 @@ public class WaffleConeLauncher implements Tower {
 
     }
     
-    public static String getDescription() {
+    public String getDescription() {
         return description;
     }
-    public static double getPrice(Difficulty diff) {
-        switch (diff) {
+    public double getPrice() {
+        switch (this.diff) {
             case EASY:
                 return price * 1;
             case MEDIUM:
@@ -40,5 +49,9 @@ public class WaffleConeLauncher implements Tower {
         }
         return 0;
     }
-
+    public ImageView getIcon() {
+        this.icon.setFitWidth(100);
+        this.icon.setFitHeight(80);
+        return this.icon;
+    }
 }
