@@ -50,7 +50,7 @@ public class WaffleConeLauncher implements Tower {
         return 0;
     }
     public ImageView getIcon() {
-        this.icon = new ImageView(new Image("file:src/truck.png"));
+        this.icon = new ImageView(new Image("file:src/waffleconelauncher.png"));
         this.icon.setFitWidth(100);
         this.icon.setFitHeight(80);
         return this.icon;

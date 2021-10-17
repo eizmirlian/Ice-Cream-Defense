@@ -66,6 +66,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             ImageView vanillaCatapult = v.getIcon();
             vanillaCatapult.setFitWidth(150);
             vanillaCatapult.setFitHeight(120);
+            Text towerTitle1 = new Text("VANILLA\nCATAPULT");
+            towerTitle1.setStyle("-fx-fill: yellow;-fx-font: 24px Stencil");
             Text price1 = new Text("Price: " + v.getPrice());
             price1.setStyle("-fx-fill: yellow;-fx-font: 18px Impact");
             Text desc1 = new Text(v.getDescription());
@@ -75,7 +77,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
                     + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 36px Impact");
             buy1.setOnAction(new BuyTowerEventHandler(v, this.grass, this.primaryStage,
                     ConfigEventHandler.getTruck(), errorMessage));
-            towerOptions1.getChildren().addAll(vanillaCatapult, price1, desc1, buy1);
+            towerOptions1.getChildren().addAll(vanillaCatapult, towerTitle1, price1, desc1, buy1);
             towerOptions1.setSpacing(50);
             
             VBox towerOptions2 = new VBox();
@@ -83,6 +85,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             ImageView waffleConeLauncher = w.getIcon();
             waffleConeLauncher.setFitWidth(150);
             waffleConeLauncher.setFitHeight(120);
+            Text towerTitle2 = new Text("WAFFLE CONE\nLAUNCHER");
+            towerTitle2.setStyle("-fx-fill: yellow;-fx-font: 24px Stencil");
             Text price2 = new Text("Price: " + w.getPrice());
             price2.setStyle("-fx-fill: yellow;-fx-font: 18px Impact");
             Text desc2 = new Text(w.getDescription());
@@ -92,7 +96,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
                     + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 36px Impact");
             buy2.setOnAction(new BuyTowerEventHandler(w, this.grass, this.primaryStage,
                     ConfigEventHandler.getTruck(), errorMessage));
-            towerOptions2.getChildren().addAll(waffleConeLauncher, price2, desc2, buy2);
+            towerOptions2.getChildren().addAll(waffleConeLauncher, towerTitle2, price2, desc2, buy2);
             towerOptions2.setSpacing(50);
             
             VBox towerOptions3 = new VBox();
@@ -100,6 +104,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             ImageView chocChipGatlingGun = c.getIcon();
             chocChipGatlingGun.setFitWidth(150);
             chocChipGatlingGun.setFitHeight(120);
+            Text towerTitle3 = new Text("CHOCOLATE CHIP\nGATLING GUN");
+            towerTitle3.setStyle("-fx-fill: yellow;-fx-font: 24px Stencil");
             Text price3 = new Text("Price: " + c.getPrice());
             price3.setStyle("-fx-fill: yellow;-fx-font: 18px Impact");
             Text desc3 = new Text(c.getDescription());
@@ -109,7 +115,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
                     + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 36px Impact");
             buy3.setOnAction(new BuyTowerEventHandler(c, this.grass, this.primaryStage,
                     ConfigEventHandler.getTruck(), errorMessage));
-            towerOptions3.getChildren().addAll(chocChipGatlingGun, price3, desc3, buy3);
+            towerOptions3.getChildren().addAll(chocChipGatlingGun, towerTitle3, price3, desc3, buy3);
             towerOptions3.setSpacing(50);
             
             towers.getChildren().addAll(towerOptions1, towerOptions2, towerOptions3);
