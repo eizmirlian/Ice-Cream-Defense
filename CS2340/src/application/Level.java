@@ -32,7 +32,7 @@ public class Level extends GridPane {
         this.setStyle("-fx-background-color: green");
         Image truckPic = new Image("file:src/truck.png");
         ImageView truck = new ImageView(truckPic);
-        truck.setFitWidth(190);
+        truck.setFitWidth(180);
         truck.setFitHeight(150);
         Button monument = new Button();
         monument.setStyle("-fx-background-color: green");
@@ -77,52 +77,52 @@ public class Level extends GridPane {
                 case '0':
                     entry = new Path(row, col, row + 1, col);
                     entryPoints.add(entry);
-                    allPaths[col][row] = entry;
+                    allPaths[row][col] = entry;
                     makePathButton(col, row);
                     col++;
                     break;
                 case '(':
                     entry = new Path(row, col, row, col + 1);
                     entryPoints.add(entry);
-                    allPaths[col][row] = entry;
+                    allPaths[row][col] = entry;
                     makePathButton(col, row);
                     col++;
                     break;
                 case ')':
                     entry = new Path(row, col, row, col - 1);
                     entryPoints.add(entry);
-                    allPaths[col][row] = entry;
+                    allPaths[row][col] = entry;
                     makePathButton(col, row);
                     col++;
                     break;
                 case '8':
                     entry = new Path(row, col, row - 1, col);
                     entryPoints.add(entry);
-                    allPaths[col][row] = entry;
+                    allPaths[row][col] = entry;
                     makePathButton(col, row);
                     col++;
                     break;
                 case 'v':
                     path = new Path(row, col, row + 1, col);
-                    allPaths[col][row] = path;
+                    allPaths[row][col] = path;
                     makePathButton(col, row);
                     col++;
                     break;
                 case '<':
                     path = new Path(row, col, row, col + 1);
-                    allPaths[col][row] = path;
+                    allPaths[row][col] = path;
                     makePathButton(col, row);
                     col++;
                     break;
                 case '>':
                     path = new Path(row, col, row, col - 1);
-                    allPaths[col][row] = path;
+                    allPaths[row][col] = path;
                     makePathButton(col, row);
                     col++;
                     break;
                 case '^':
                     path = new Path(row, col, row - 1, col);
-                    allPaths[col][row] = path;
+                    allPaths[row][col] = path;
                     makePathButton(col, row);
                     col++;
                     break;
@@ -146,13 +146,13 @@ public class Level extends GridPane {
         this.add(path, col, row);
     }
     
-    private void setNexts(Path[][] allPaths) {
+    public void setNexts(Path[][] allPaths) {
         for (Path[] paths : allPaths) {
             for (Path path : paths) {
                 if (path != null) {
                     int nextRow = path.getNextPos()[0];
                     int nextCol = path.getNextPos()[1];
-                    path.setNext(allPaths[nextCol][nextRow]);
+                    path.setNext(allPaths[nextRow][nextCol]);
                 }
             }
         }
