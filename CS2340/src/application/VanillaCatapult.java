@@ -8,7 +8,7 @@ public class VanillaCatapult implements Tower {
     private int range;
     private int damage;
     private int fireRate;
-    private ImageView icon = new ImageView(new Image("file:src/truck.png"));
+    private ImageView icon;
     private int price = 100;
     private Difficulty diff;
     private static String description = "A catapult which launches scoops\nof vanilla ice cream at enemies!\nStandard damage and rate of\nfire, with a lot of range.";
@@ -48,6 +48,7 @@ public class VanillaCatapult implements Tower {
         return 0;
     }
     public ImageView getIcon() {
+        this.icon = new ImageView(new Image("file:src/truck.png"));
         this.icon.setFitWidth(100);
         this.icon.setFitHeight(80);
         return this.icon;
