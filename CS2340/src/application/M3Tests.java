@@ -80,4 +80,38 @@ public class M3Tests {
         assertEquals(p9.getNext(), p4);
     }
 
+    public void jonathanMonumentSellTest(){
+        Monument monument = new Monument(1000,100);
+        VanillaCatapult v1 = new VanillaCatapult(Difficulty.EASY);
+        WaffleConeLauncher w1 = new WaffleConeLauncher(Difficulty.EASY);
+        ChocolateChipGatlingGun c1 = new ChocolateChipGatlingGun(Difficulty.EASY);
+        monument.sell(v1.getPrice()*0.8);
+        assertEquals(monument.getMoney(), 180);
+        monument.sell(w1.getPrice()*0.8);
+        assertEquals(monument.getMoney(), 300);
+        monument.sell(c1.getPrice()*0.8);
+        assertEquals(monument.getMoney(), 436);
+    }
+
+    public void jonathanUpgradedTowersSellTest(){
+        VanillaCatapult v1 = new VanillaCatapult(Difficulty.EASY);
+        VanillaCatapult v2 = new VanillaCatapult(Difficulty.MEDIUM);
+        VanillaCatapult v3 = new VanillaCatapult(Difficulty.HARD);
+        WaffleConeLauncher w1 = new WaffleConeLauncher(Difficulty.EASY);
+        WaffleConeLauncher w2 = new WaffleConeLauncher(Difficulty.MEDIUM);
+        WaffleConeLauncher w3 = new WaffleConeLauncher(Difficulty.HARD);
+        ChocolateChipGatlingGun c1 = new ChocolateChipGatlingGun(Difficulty.EASY);
+        ChocolateChipGatlingGun c2 = new ChocolateChipGatlingGun(Difficulty.MEDIUM);
+        ChocolateChipGatlingGun c3 = new ChocolateChipGatlingGun(Difficulty.HARD);
+        assertEquals(v1.getPrice()*0.8,80);
+        assertEquals((v2.getPrice()*0.8),96);
+        assertEquals(v3.getPrice()*0.8,120);
+        assertEquals(w1.getPrice()*0.8,120);
+        assertEquals(w2.getPrice()*0.8,144);
+        assertEquals(w3.getPrice()*0.8,180);
+        assertEquals(c1.getPrice()*0.8,136);
+        assertEquals(c2.getPrice()*0.8,163.2);
+        assertEquals(c3.getPrice()*0.8,204);
+    }
+
 }

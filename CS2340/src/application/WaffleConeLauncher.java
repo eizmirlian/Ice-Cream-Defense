@@ -34,7 +34,12 @@ public class WaffleConeLauncher implements Tower {
         // TODO Auto-generated method stub
 
     }
-    
+
+    @Override
+    public void sell(){
+        // TODO Auto-generated method stub
+    }
+
     public String getDescription() {
         return description;
     }
