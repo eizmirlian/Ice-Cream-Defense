@@ -79,5 +79,109 @@ public class M3Tests {
         assertEquals(p8.getNext(), p9);
         assertEquals(p9.getNext(), p4);
     }
+    
+    @Test
+    void ethanBuyTest() {
+    	
+    	WaffleConeLauncher easy = new WaffleConeLauncher(Difficulty.EASY);
+    	WaffleConeLauncher medium = new WaffleConeLauncher(Difficulty.MEDIUM);
+    	WaffleConeLauncher hard = new WaffleConeLauncher(Difficulty.HARD);
+    	
+    	Grass GEasy = new Grass(0, 0, null);
+    	Geasy.buyTower(easy);
+    	Grass GMed = new Grass(1, 1, null);
+    	Geasy.buyTower(medium);
+    	Grass GHard = new Grass(2, 2, null);
+    	Geasy.buyTower(hard);
+    	
+    	assertEquals(easy.getPrice(), 150);
+    	assertEquals(medium.getPrice(), 180);
+    	assertEquals(hard.getPrice(), 225);
+    	
+    	Stage stage = new Stage();
+    	Text errorMessage = new Text("You don't have enough money to buy that");
+    	Monument mount1 = new Monument(1000, 1000);
+    	Monument mount2 = new Monument(1000, 1000);
+    	Monument mount3 = new Monument(1000, 1000);
+    	
+    	BuyTowerEventHandler easyhandle = new BuyTowerEventHandler(easy, Geasy, stage, mount1, errorMessage);
+    	BuyTowerEventHandler mediumhandle = new BuyTowerEventHandler(easy, Geasy, stage, mount2, errorMessage);
+    	BuyTowerEventHandler hardhandle = new BuyTowerEventHandler(easy, Geasy, stage, mount3, errorMessage);
+    	
+    	easyhandle.handle(null);
+    	assertEquals(mount1.getMoney(), 850);
+    	easyhandle.handle(null);
+    	easyhandle.handle(null);
+    	easyhandle.handle(null);
+    	easyhandle.handle(null);
+    	easyhandle.handle(null);
+    	easyhandle.handle(null);
+    	assertEquals(mount1.getMoney(), 100);
+    	
+    	mediumhandle.handle(null);
+    	assertEquals(mount2.getMoney(), 820);
+    	mediumhandle.handle(null);
+    	mediumhandle.handle(null);
+    	mediumhandle.handle(null);
+    	mediumhandle.handle(null);
+    	mediumhandle.handle(null);
+    	mediumhandle.handle(null);
+    	assertEquals(mount2.getMoney(), 100);
+    	
+    	hardhandle.handle(null);
+    	assertEquals(mount3.getMoney(), 775);
+    	hardhandle.handle(null);
+    	hardhandle.handle(null);
+    	hardhandle.handle(null);
+    	hardhandle.handle(null);
+    	hardhandle.handle(null);
+    	hardhandle.handle(null);
+    	assertEquals(mount3.getMoney(), 100);
+    	
+    }
+    
+    @Test
+    void ethanTestPathGeneration() {
+    	Path a = new Path(0, 0, 0, 1);
+    	Path b = new Path(0, 1, 1, 1);
+    	Path c = new Path(1, 1, 1, 0);
+    	Path d = new Path(1, 0, 0, 0);
+    	
+    	Enemy e = new Enemy();
+    	
+    	assertEquals(a.getPos(), [0, 0]);
+    	assertEquals(a.getNextPos(), [0, 1]);
+    	
+    	a.setNextPos(b)
+    	
+    	assertEquals(a.getNextPos(), b.getNextPos());
+    	assertEquals(a.getEnemy(), null);
+    	assertEquals(b.getEnemy(), null);
+    	assertEquals(c.getEnemy(), null);
+    	assertEquals(d.getEnemy(), null);
+    	
+    	a.enter(e);
+    	
+    	assertEquals(a.getEnemy(), e);
+    	assertEquals(b.getEnemy(), null);
+    	assertEquals(c.getEnemy(), null);
+    	assertEquals(d.getEnemy(), null);
+    	
+    	a.leave();
+    	c.enter(e);
+    	d.enter(e);
+    	
+    	assertEquals(a.getEnemy(), null);
+    	assertEquals(b.getEnemy(), null);
+    	assertEquals(c.getEnemy(), e);
+    	assertEquals(d.getEnemy(), e);
+    	
+    	b.enter(e);
+    	
+    	assertEquals(false, b.check());
+    	assertEquals(true, b.check());
+    	assertEquals(true, c.check());
+    	assertEquals(true, d.check());
+    }
 
 }

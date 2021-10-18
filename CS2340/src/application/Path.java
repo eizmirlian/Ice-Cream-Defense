@@ -13,6 +13,7 @@ public class Path {
         this.pos[1] = column;
         this.nextPos[0] = nextRow;
         this.nextPos[1] = nextColumn;
+        this.enemy = null;
     }
     
     public int[] getPos() {
