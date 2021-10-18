@@ -14,6 +14,8 @@ public class Monument {
     public void buy(double price) {
         this.money -= price;
     }
+
+    public void sell(double price) {this.money += price;}
     
     public void takeDamage(int dmg) {
         this.health -= dmg;
