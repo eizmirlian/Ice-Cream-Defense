@@ -8,7 +8,7 @@ public class Path {
     private boolean steppedOn;
     private Enemy enemy;
     
-    public Path (int row, int column, int nextRow, int nextColumn) {
+    public Path(int row, int column, int nextRow, int nextColumn) {
         this.pos[0] = row;
         this.pos[1] = column;
         this.nextPos[0] = nextRow;

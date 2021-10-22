@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 
 public class GrassEventHandler implements EventHandler<ActionEvent> {
     private Stage primaryStage;
-    Grass grass;
-    Difficulty diff;
+    private Grass grass;
+    private Difficulty diff;
     
     public GrassEventHandler(Stage primaryStage, Grass grass, Difficulty diff) {
         this.primaryStage = primaryStage;
@@ -40,7 +40,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
         
         
         HBox others = new HBox();
-        Text moneyLabel = new Text("Money: " + Double.toString(ConfigEventHandler.getTruck().getMoney()));
+        Text moneyLabel = new Text("Money: " + Double.toString(ConfigEventHandler
+                .getTruck().getMoney()));
         moneyLabel.setStyle("-fx-fill: yellow;-fx-font: 24px Stencil");
         Button exit = new Button("Exit");
         exit.setStyle("-fx-background-color: red;"
@@ -96,7 +97,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
                     + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 36px Impact");
             buy2.setOnAction(new BuyTowerEventHandler(w, this.grass, this.primaryStage,
                     ConfigEventHandler.getTruck(), errorMessage));
-            towerOptions2.getChildren().addAll(waffleConeLauncher, towerTitle2, price2, desc2, buy2);
+            towerOptions2.getChildren().addAll(waffleConeLauncher, towerTitle2, price2, desc2,
+                    buy2);
             towerOptions2.setSpacing(50);
             
             VBox towerOptions3 = new VBox();
@@ -115,7 +117,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
                     + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 36px Impact");
             buy3.setOnAction(new BuyTowerEventHandler(c, this.grass, this.primaryStage,
                     ConfigEventHandler.getTruck(), errorMessage));
-            towerOptions3.getChildren().addAll(chocChipGatlingGun, towerTitle3, price3, desc3, buy3);
+            towerOptions3.getChildren().addAll(chocChipGatlingGun, towerTitle3, price3,
+                    desc3, buy3);
             towerOptions3.setSpacing(50);
             
             towers.getChildren().addAll(towerOptions1, towerOptions2, towerOptions3);

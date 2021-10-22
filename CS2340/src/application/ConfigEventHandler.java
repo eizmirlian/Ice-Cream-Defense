@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,7 +18,8 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
     private static Scene gameScreen;
     private static Monument iceCreamTruck;
     
-    public ConfigEventHandler(ComboBox<Difficulty> difficulty, TextField playerName, Text error, Stage primaryStage) {
+    public ConfigEventHandler(ComboBox<Difficulty> difficulty, TextField playerName,
+            Text error, Stage primaryStage) {
         this.difficulty = difficulty;
         this.playerName = playerName;
         this.error = error;
@@ -37,15 +39,15 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
         }
     }
     public int setModifier(Difficulty diff) {
-        switch(diff) {
-            case EASY:
-                return 4;
-            case MEDIUM:
-                return 3;
-            case HARD:
-                return 2;
-            default:
-                return 0;
+        switch (diff) {
+        case EASY:
+            return 4;
+        case MEDIUM:
+            return 3;
+        case HARD:
+            return 2;
+        default:
+            return 0;
         }
     }
 
@@ -54,6 +56,7 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
     }
     
     private void levelGen(Difficulty diff) {
+        StackPane base = new StackPane();
         Level level1 = new Level("......0........"
                                + "......v<<<<<<<)"
                                + "......v........"
@@ -62,15 +65,16 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
                                + "...v..v........"
                                + "...v..v........"
                                + "...v..oo......."
-                               + "...>>>oo......."
+                               + "...>>>oo<<<<<<)"
                                + ".......^......."
                                + ".......^......."
                                + "(>>>>>>^......."
                                + ".......^......."
                                + ".......^<<<<<<)"
-                               + ".......8.......", diff, 15, 15, primaryStage);
+                               + ".......8.......", diff, 15, 15, primaryStage, 1500, 1200);
         level1.generateLevel();
-        gameScreen = new Scene(level1, 1500, 1200);
+        base.getChildren().add(level1);
+        gameScreen = new Scene(base, 1500, 1270);
         
         primaryStage.setScene(gameScreen);
     }
@@ -80,5 +84,4 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
     public static Monument getTruck() {
         return iceCreamTruck;
     }
-
 }

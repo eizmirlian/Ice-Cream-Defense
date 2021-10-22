@@ -15,7 +15,9 @@ public class Monument {
         this.money -= price;
     }
 
-    public void sell(double price) {this.money += price;}
+    public void sell(double price) {
+        this.money += price;
+    }
     
     public void takeDamage(int dmg) {
         this.health -= dmg;
@@ -28,9 +30,11 @@ public class Monument {
     public int getHealth() {
         return this.health;
     }
+    
     public boolean getDisplay() {
         return this.displaying;
     }
+    
     public void setDisplay(boolean displaying) {
         this.displaying = displaying;
     }

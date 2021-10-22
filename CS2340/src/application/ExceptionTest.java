@@ -11,8 +11,7 @@ class ExceptionTest {
         String[] args = null;
         try {
             HomeScreen.main(args);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             fail("No exception should have bneen thrown");
         }
 

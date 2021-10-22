@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
@@ -83,7 +82,8 @@ public class HomeScreen extends Application {
             primaryStage.setScene(config);
         });
 
-        confirm.setOnAction(new ConfigEventHandler(difficulty, playerName, errorMessage, primaryStage));
+        confirm.setOnAction(new ConfigEventHandler(difficulty, playerName, errorMessage,
+                primaryStage));
             
 
         primaryStage.show();

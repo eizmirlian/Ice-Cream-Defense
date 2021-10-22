@@ -2,7 +2,6 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -14,7 +13,8 @@ public class BuyTowerEventHandler implements EventHandler<ActionEvent> {
     private Monument truck;
     private Text error;
     
-    public BuyTowerEventHandler(Tower toBuy, Grass location, Stage primaryStage, Monument truck, Text error) {
+    public BuyTowerEventHandler(Tower toBuy, Grass location, Stage primaryStage, Monument truck,
+            Text error) {
         this.toBuy = toBuy;
         this.location = location;
         this.primaryStage = primaryStage;
@@ -29,6 +29,7 @@ public class BuyTowerEventHandler implements EventHandler<ActionEvent> {
             this.primaryStage.setScene(ConfigEventHandler.getScene());
             this.location.buyTower(toBuy);
             this.location.getButton().setGraphic(toBuy.getIcon());
+            Level.setPause(false);
         } else {
             error.setVisible(true);
         }

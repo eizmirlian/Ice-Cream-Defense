@@ -1,30 +1,28 @@
 package application;
-import org.junit.Test;
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 public class M3Tests {
-
-
-
     @Test
-    public void waffleConePriceTest () {
+    public void waffleConePriceTest() {
         WaffleConeLauncher waffle = new WaffleConeLauncher(Difficulty.EASY);
         WaffleConeLauncher waffle2 = new WaffleConeLauncher(Difficulty.MEDIUM);
         WaffleConeLauncher waffle3 = new WaffleConeLauncher(Difficulty.HARD);
-        Assert.assertEquals(150, waffle.getPrice());
-        Assert.assertEquals(180, waffle2.getPrice());
-        Assert.assertEquals(225, waffle3.getPrice());
+        assertEquals(150, waffle.getPrice());
+        assertEquals(180, waffle2.getPrice());
+        assertEquals(225, waffle3.getPrice());
     }
-
+    
     @Test
     public void monumentHealthAndMoneyTest() {
         Monument monument = new Monument(1000, 100);
-        Assert.assertEquals(1000, monument.getHealth());
-        Assert.assertEquals(100, monument.getMoney());
+        assertEquals(1000, monument.getHealth());
+        assertEquals(100, monument.getMoney());
         monument.takeDamage(100);
-        Assert.assertEquals(100, monument.getHealth());
+        assertEquals(900, monument.getHealth());
         monument.buy(50);
-        Assert.assertEquals(50, monument.getMoney());
+        assertEquals(50, monument.getMoney());
     }
     
     @Test
@@ -67,7 +65,7 @@ public class M3Tests {
         allPaths[2][0] = p7;
         allPaths[1][0] = p8;
         allPaths[1][1] = p9;
-        Level testLevel = new Level("", Difficulty.EASY, 3, 3, null);
+        Level testLevel = new Level("", Difficulty.EASY, 3, 3, null, 1500, 1200);
         testLevel.setNexts(allPaths);
         assertEquals(p1.getNext(), p2);
         assertEquals(p2.getNext(), p3);
@@ -80,124 +78,70 @@ public class M3Tests {
         assertEquals(p9.getNext(), p4);
     }
     
-    @Test
-    void ethanBuyTest() {
-    	
-    	WaffleConeLauncher easy = new WaffleConeLauncher(Difficulty.EASY);
-    	WaffleConeLauncher medium = new WaffleConeLauncher(Difficulty.MEDIUM);
-    	WaffleConeLauncher hard = new WaffleConeLauncher(Difficulty.HARD);
-    	
-    	Grass GEasy = new Grass(0, 0, null);
-    	Geasy.buyTower(easy);
-    	Grass GMed = new Grass(1, 1, null);
-    	Geasy.buyTower(medium);
-    	Grass GHard = new Grass(2, 2, null);
-    	Geasy.buyTower(hard);
-    	
-    	assertEquals(easy.getPrice(), 150);
-    	assertEquals(medium.getPrice(), 180);
-    	assertEquals(hard.getPrice(), 225);
-    	
-    	Stage stage = new Stage();
-    	Text errorMessage = new Text("You don't have enough money to buy that");
-    	Monument mount1 = new Monument(1000, 1000);
-    	Monument mount2 = new Monument(1000, 1000);
-    	Monument mount3 = new Monument(1000, 1000);
-    	
-    	BuyTowerEventHandler easyhandle = new BuyTowerEventHandler(easy, Geasy, stage, mount1, errorMessage);
-    	BuyTowerEventHandler mediumhandle = new BuyTowerEventHandler(easy, Geasy, stage, mount2, errorMessage);
-    	BuyTowerEventHandler hardhandle = new BuyTowerEventHandler(easy, Geasy, stage, mount3, errorMessage);
-    	
-    	easyhandle.handle(null);
-    	assertEquals(mount1.getMoney(), 850);
-    	easyhandle.handle(null);
-    	easyhandle.handle(null);
-    	easyhandle.handle(null);
-    	easyhandle.handle(null);
-    	easyhandle.handle(null);
-    	easyhandle.handle(null);
-    	assertEquals(mount1.getMoney(), 100);
-    	
-    	mediumhandle.handle(null);
-    	assertEquals(mount2.getMoney(), 820);
-    	mediumhandle.handle(null);
-    	mediumhandle.handle(null);
-    	mediumhandle.handle(null);
-    	mediumhandle.handle(null);
-    	mediumhandle.handle(null);
-    	mediumhandle.handle(null);
-    	assertEquals(mount2.getMoney(), 100);
-    	
-    	hardhandle.handle(null);
-    	assertEquals(mount3.getMoney(), 775);
-    	hardhandle.handle(null);
-    	hardhandle.handle(null);
-    	hardhandle.handle(null);
-    	hardhandle.handle(null);
-    	hardhandle.handle(null);
-    	hardhandle.handle(null);
-    	assertEquals(mount3.getMoney(), 100);
-    	
-    }
     
     @Test
     void ethanTestPathGeneration() {
-    	Path a = new Path(0, 0, 0, 1);
-    	Path b = new Path(0, 1, 1, 1);
-    	Path c = new Path(1, 1, 1, 0);
-    	Path d = new Path(1, 0, 0, 0);
-    	
-    	Enemy e = new Enemy();
-    	
-    	assertEquals(a.getPos(), [0, 0]);
-    	assertEquals(a.getNextPos(), [0, 1]);
-    	
-    	a.setNextPos(b)
-    	
-    	assertEquals(a.getNextPos(), b.getNextPos());
-    	assertEquals(a.getEnemy(), null);
-    	assertEquals(b.getEnemy(), null);
-    	assertEquals(c.getEnemy(), null);
-    	assertEquals(d.getEnemy(), null);
-    	
-    	a.enter(e);
-    	
-    	assertEquals(a.getEnemy(), e);
-    	assertEquals(b.getEnemy(), null);
-    	assertEquals(c.getEnemy(), null);
-    	assertEquals(d.getEnemy(), null);
-    	
-    	a.leave();
-    	c.enter(e);
-    	d.enter(e);
-    	
-    	assertEquals(a.getEnemy(), null);
-    	assertEquals(b.getEnemy(), null);
-    	assertEquals(c.getEnemy(), e);
-    	assertEquals(d.getEnemy(), e);
-    	
-    	b.enter(e);
-    	
-    	assertEquals(false, b.check());
-    	assertEquals(true, b.check());
-    	assertEquals(true, c.check());
-    	assertEquals(true, d.check());
+        Path a = new Path(0, 0, 0, 1);
+        Path b = new Path(0, 1, 1, 1);
+        Path c = new Path(1, 1, 1, 0);
+        Path d = new Path(1, 0, 0, 0);
+        
+        Enemy e = new NormKid();
+        int[] testPos1 = {0, 0};
+        int[] testPos2 = {0, 1};
+        
+        assertEquals(a.getPos()[0], testPos1[0]);
+        assertEquals(a.getPos()[1], testPos1[1]);
+        assertEquals(a.getNextPos()[0], testPos2[0]);
+        assertEquals(a.getNextPos()[1], testPos2[1]);
+        
+        a.setNext(b);
+        
+        assertEquals(a.getNextPos()[0], b.getPos()[0]);
+        assertEquals(a.getNextPos()[1], b.getPos()[1]);
+        assertEquals(a.getEnemy(), null);
+        assertEquals(b.getEnemy(), null);
+        assertEquals(c.getEnemy(), null);
+        assertEquals(d.getEnemy(), null);
+        
+        a.enter(e);
+        
+        assertEquals(a.getEnemy(), e);
+        assertEquals(b.getEnemy(), null);
+        assertEquals(c.getEnemy(), null);
+        assertEquals(d.getEnemy(), null);
+        
+        a.leave();
+        c.enter(e);
+        d.enter(e);
+        
+        assertEquals(a.getEnemy(), null);
+        assertEquals(b.getEnemy(), null);
+        assertEquals(c.getEnemy(), e);
+        assertEquals(d.getEnemy(), e);
+        
+        b.enter(e);
+        
+        assertEquals(false, a.check());
+        assertEquals(true, b.check());
+        assertEquals(true, c.check());
+        assertEquals(true, d.check());
     }
 
-    public void jonathanMonumentSellTest(){
-        Monument monument = new Monument(1000,100);
+    public void jonathanMonumentSellTest() {
+        Monument monument = new Monument(1000, 100);
         VanillaCatapult v1 = new VanillaCatapult(Difficulty.EASY);
         WaffleConeLauncher w1 = new WaffleConeLauncher(Difficulty.EASY);
         ChocolateChipGatlingGun c1 = new ChocolateChipGatlingGun(Difficulty.EASY);
-        monument.sell(v1.getPrice()*0.8);
+        monument.sell(v1.getPrice() * 0.8);
         assertEquals(monument.getMoney(), 180);
-        monument.sell(w1.getPrice()*0.8);
+        monument.sell(w1.getPrice() * 0.8);
         assertEquals(monument.getMoney(), 300);
-        monument.sell(c1.getPrice()*0.8);
+        monument.sell(c1.getPrice() * 0.8);
         assertEquals(monument.getMoney(), 436);
     }
 
-    public void jonathanUpgradedTowersSellTest(){
+    public void jonathanUpgradedTowersSellTest() {
         VanillaCatapult v1 = new VanillaCatapult(Difficulty.EASY);
         VanillaCatapult v2 = new VanillaCatapult(Difficulty.MEDIUM);
         VanillaCatapult v3 = new VanillaCatapult(Difficulty.HARD);
@@ -207,15 +151,15 @@ public class M3Tests {
         ChocolateChipGatlingGun c1 = new ChocolateChipGatlingGun(Difficulty.EASY);
         ChocolateChipGatlingGun c2 = new ChocolateChipGatlingGun(Difficulty.MEDIUM);
         ChocolateChipGatlingGun c3 = new ChocolateChipGatlingGun(Difficulty.HARD);
-        assertEquals(v1.getPrice()*0.8,80);
-        assertEquals((v2.getPrice()*0.8),96);
-        assertEquals(v3.getPrice()*0.8,120);
-        assertEquals(w1.getPrice()*0.8,120);
-        assertEquals(w2.getPrice()*0.8,144);
-        assertEquals(w3.getPrice()*0.8,180);
-        assertEquals(c1.getPrice()*0.8,136);
-        assertEquals(c2.getPrice()*0.8,163.2);
-        assertEquals(c3.getPrice()*0.8,204);
+        assertEquals(v1.getPrice() * 0.8, 80);
+        assertEquals((v2.getPrice() * 0.8), 96);
+        assertEquals(v3.getPrice() * 0.8, 120);
+        assertEquals(w1.getPrice() * 0.8, 120);
+        assertEquals(w2.getPrice() * 0.8, 144);
+        assertEquals(w3.getPrice() * 0.8, 180);
+        assertEquals(c1.getPrice() * 0.8, 136);
+        assertEquals(c2.getPrice() * 0.8, 163.2);
+        assertEquals(c3.getPrice() * 0.8, 204);
     }
 
 }
