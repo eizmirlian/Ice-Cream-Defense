@@ -78,6 +78,31 @@ public class M3Tests {
         assertEquals(p9.getNext(), p4);
     }
     
+    @Test
+    void ethanButTest() {
+        Monument testMonument = new Monument(1000, 1000);
+        assertEquals(testMonument.getMoney(), 1000);
+        testMonument.buy(1000);
+        assertEquals(testMonument.getMoney(), 0);
+        testMonument.sell(500);
+        assertEquals(testMonument.getMoney(), 500);
+        testMonument.buy(200);
+        assertEquals(testMonument.getMoney(), 300);
+        testMonument.buy(50);
+        assertEquals(testMonument.getMoney(), 250);
+        testMonument.sell(250);
+        assertEquals(testMonument.getMoney(), 500);
+        testMonument.buy(350);
+        assertEquals(testMonument.getMoney(), 150);
+        testMonument.buy(150);
+        assertEquals(testMonument.getMoney(), 0);
+        testMonument.buy(0);
+        assertEquals(testMonument.getMoney(), 0);
+        testMonument.sell(0);
+        assertEquals(testMonument.getMoney(), 0);
+        testMonument.sell(99999999);
+        assertEquals(testMonument.getMoney(), 99999999);
+    }
     
     @Test
     void ethanTestPathGeneration() {
