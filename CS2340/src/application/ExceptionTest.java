@@ -12,7 +12,7 @@ class ExceptionTest {
         try {
             HomeScreen.main(args);
         } catch (Exception e) {
-            fail("No exception should have bneen thrown");
+            fail("No exception should have been thrown");
         }
 
     }
