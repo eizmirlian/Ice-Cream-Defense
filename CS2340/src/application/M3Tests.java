@@ -65,7 +65,8 @@ public class M3Tests {
         allPaths[2][0] = p7;
         allPaths[1][0] = p8;
         allPaths[1][1] = p9;
-        Level testLevel = new Level("", Difficulty.EASY, 3, 3, null, 1500, 1200);
+        EnemyType[][] en = {{EnemyType.MEDIUM}};
+        Level testLevel = new Level("", Difficulty.EASY, en, 3, 3, null, 1500, 1200);
         testLevel.setNexts(allPaths);
         assertEquals(p1.getNext(), p2);
         assertEquals(p2.getNext(), p3);
@@ -78,31 +79,6 @@ public class M3Tests {
         assertEquals(p9.getNext(), p4);
     }
     
-    @Test
-    void ethanButTest() {
-        Monument testMonument = new Monument(1000, 1000);
-        assertEquals(testMonument.getMoney(), 1000);
-        testMonument.buy(1000);
-        assertEquals(testMonument.getMoney(), 0);
-        testMonument.sell(500);
-        assertEquals(testMonument.getMoney(), 500);
-        testMonument.buy(200);
-        assertEquals(testMonument.getMoney(), 300);
-        testMonument.buy(50);
-        assertEquals(testMonument.getMoney(), 250);
-        testMonument.sell(250);
-        assertEquals(testMonument.getMoney(), 500);
-        testMonument.buy(350);
-        assertEquals(testMonument.getMoney(), 150);
-        testMonument.buy(150);
-        assertEquals(testMonument.getMoney(), 0);
-        testMonument.buy(0);
-        assertEquals(testMonument.getMoney(), 0);
-        testMonument.sell(0);
-        assertEquals(testMonument.getMoney(), 0);
-        testMonument.sell(99999999);
-        assertEquals(testMonument.getMoney(), 99999999);
-    }
     
     @Test
     void ethanTestPathGeneration() {
@@ -111,7 +87,7 @@ public class M3Tests {
         Path c = new Path(1, 1, 1, 0);
         Path d = new Path(1, 0, 0, 0);
         
-        Enemy e = new NormKid();
+        Enemy e = new NormKid(a);
         int[] testPos1 = {0, 0};
         int[] testPos2 = {0, 1};
         

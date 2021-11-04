@@ -1,8 +1,11 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 
 import javafx.geometry.HPos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,25 +15,37 @@ import javafx.stage.Stage;
 public class Level extends GridPane {
     
     private String ascii;
-    private LinkedList<Path> entryPoints = new LinkedList<Path>();
+    private ArrayList<Path> entryPoints = new ArrayList<Path>();
     private int width;
     private int height;
     private Difficulty diff;
+    private Queue<EnemyWave> enemyWaves = new LinkedList<EnemyWave>();
+    private EnemyType[][] waves;
     private Stage stage;
-    private int screenWidth;
-    private int screenHeight;
+    private static int screenWidth;
+    private static int screenHeight;
     private int unitWidth;
     private int unitHeight;
-    private static boolean pause = true;
+    private static boolean pause;
+    private boolean started;
     
-    public Level(String ascii, Difficulty diff, int width, int height, Stage primaryStage,
-            int screenWidth, int screenHeight) {
+    public Level(String ascii, Difficulty diff, EnemyType[][] waves, int width,
+            int height, Stage primaryStage, int screenWidth, int screenHeight) {
         this.ascii = ascii;
-        this.setMinSize(1000, 800);
+        this.setMinSize(screenWidth, screenHeight);
         this.width = width;
         this.height = height;
         this.diff = diff;
         this.stage = primaryStage;
+        Level.screenWidth = screenWidth;
+        Level.screenHeight = screenHeight;
+        this.unitWidth = Level.screenWidth / this.width;
+        this.unitHeight = Level.screenHeight / this.height;
+        this.waves = waves;
+        Enemy.setUnitHeight(this.unitHeight);
+        Enemy.setUnitWidth(this.unitWidth);
+        Level.pause = true;
+        this.started = false;
     }
     
     public void generateLevel() {
@@ -64,6 +79,11 @@ public class Level extends GridPane {
         gameStart.setStyle("-fx-background-color: red;"
                 + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 28px Stencil");
         gameStart.setOnAction(e -> {
+            if (!started) {
+                GameLoop g = new GameLoop(this);
+                g.handle(e);
+                started = true;
+            }
             if (pause) {
                 pause = false;
                 gameStart.setText("Pause");
@@ -86,7 +106,7 @@ public class Level extends GridPane {
             switch (c) {
             case '.':
                 grass = new Button();
-                grass.setMinSize(1500 / this.width, 1200 / this.height);
+                grass.setMinSize(this.unitWidth, this.unitHeight);
                 grass.setStyle("-fx-background-color: green;-fx-background-radius: 0;"
                         + "-fx-border-color: black");
                 this.add(grass, col, row);
@@ -129,13 +149,13 @@ public class Level extends GridPane {
                 col++;
                 break;
             case '<':
-                path = new Path(row, col, row, col + 1);
+                path = new Path(row, col, row, col - 1);
                 allPaths[row][col] = path;
                 makePathButton(col, row);
                 col++;
                 break;
             case '>':
-                path = new Path(row, col, row, col - 1);
+                path = new Path(row, col, row, col + 1);
                 allPaths[row][col] = path;
                 makePathButton(col, row);
                 col++;
@@ -164,7 +184,7 @@ public class Level extends GridPane {
     
     private void makePathButton(int col, int row) {
         Button path = new Button("*");
-        path.setMinSize(1500 / this.width, 1200 / this.height);
+        path.setMinSize(this.unitWidth, this.unitHeight);
         path.setStyle("-fx-background-color: gray;-fx-text-fill: yellow;"
                 + "-fx-font: 21px Impact;-fx-background-radius: 0");
         this.add(path, col, row);
@@ -176,15 +196,43 @@ public class Level extends GridPane {
                 if (path != null) {
                     int nextRow = path.getNextPos()[0];
                     int nextCol = path.getNextPos()[1];
-                    path.setNext(allPaths[nextRow][nextCol]);
+                    if (allPaths[nextRow][nextCol] != null) {
+                        path.setNext(allPaths[nextRow][nextCol]);
+                    } else {
+                        //its next must be the monument
+                        path.setLastTile(true);
+                    }
                 }
             }
         }
     }
+    
+    protected void makeWaves(Group g) {
+        for (EnemyType[] wave : this.waves) {
+            enemyWaves.add(new EnemyWave(wave, entryPoints, g));
+        }
+    }
+    public Queue<EnemyWave> getWaves() {
+        return this.enemyWaves;
+    }
+    
     public static boolean getPause() {
         return pause;
     }
+    
     public static void setPause(boolean p) {
         pause = p;
+    }
+    
+    public static int getScreenHeight() {
+        return Level.screenHeight;
+    }
+    
+    public static int getScreenWidth() {
+        return Level.screenWidth;
+    }
+    
+    public Stage getStage() {
+        return this.stage;
     }
 }
