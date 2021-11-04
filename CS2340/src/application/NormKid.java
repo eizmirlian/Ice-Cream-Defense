@@ -4,7 +4,7 @@ import javafx.scene.image.ImageView;
 
 public class NormKid extends Enemy {
     
-    private ImageView icon = new ImageView("file:src/truck.png");
+    private ImageView icon = new ImageView("file:src/enemyNormKid.png");
     
     public NormKid(Path entry) {
         super(100, 3.0);
