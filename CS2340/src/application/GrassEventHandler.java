@@ -61,7 +61,6 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
         if (grass.getTower() == null) {
             
             
-            
             VBox towerOptions1 = new VBox();
             VanillaCatapult v = new VanillaCatapult(diff);
             ImageView vanillaCatapult = v.getIcon();
@@ -127,7 +126,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
         } else {
             buildTitle.setText("Upgrade Menu");
         }
-        Scene buildMenu = new Scene(towerMenu, 1500, 1200);
+        Scene buildMenu = new Scene(towerMenu, Level.getScreenWidth(), Level.getScreenHeight());
         primaryStage.setScene(buildMenu);
     }
 
