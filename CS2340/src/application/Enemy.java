@@ -62,6 +62,10 @@ public abstract class Enemy {
         return this.pos;
     }
     
+    public int getHealth() {
+        return this.health;
+    }
+    
     public void setPos(double[] pos) {
         this.pos[0] = pos[0];
         this.pos[1] = pos[1];
