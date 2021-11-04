@@ -31,6 +31,10 @@ public class Monument {
         return this.health;
     }
     
+    public boolean isAlive() {
+        return this.health > 0;
+    }
+    
     public boolean getDisplay() {
         return this.displaying;
     }
