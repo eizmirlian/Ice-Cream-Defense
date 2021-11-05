@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-public class M3Tests {
+public class M4Tests {
     @Test
     public void ethanEnemyDeathTest() {
         Path p1 = new Path(0, 0, 0, 0);
