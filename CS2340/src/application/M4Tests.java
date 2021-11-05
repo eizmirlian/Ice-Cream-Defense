@@ -16,23 +16,22 @@ public class M4Tests {
         assertEquals(e1.checkDeath(), false);
         assertEquals(e2.checkDeath(), false);
         assertEquals(e3.checkDeath(), false);
-        e1.takeDamage(100);
+        e1.takeOnlyDamage(100);
         assertEquals(e1.checkDeath(), true);
-        e1.takeDamage(100);
+        e1.takeOnlyDamage(100);
         assertEquals(e1.checkDeath(), true);
-    
-        e2.takeDamage(10);
+        e2.takeOnlyDamage(10);
         assertEquals(e2.checkDeath(), false);
-        e2.takeDamage(20);
+        e2.takeOnlyDamage(20);
         assertEquals(e2.checkDeath(), false);
-        e2.takeDamage(200);
+        e2.takeOnlyDamage(200);
         assertEquals(e2.checkDeath(), true);
         
-        e3.takeDamage(110);
+        e3.takeOnlyDamage(110);
         assertEquals(e3.checkDeath(), true);
-        e3.takeDamage(-20);
+        e3.takeOnlyDamage(-20);
         assertEquals(e3.checkDeath(), false);
-        e3.takeDamage(10);
+        e3.takeOnlyDamage(10);
         assertEquals(e3.checkDeath(), true);
     }
     

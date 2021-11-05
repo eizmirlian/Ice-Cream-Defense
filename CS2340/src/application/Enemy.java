@@ -50,6 +50,11 @@ public abstract class Enemy {
         return false;
     }
     
+    public void takeDamage(int damage) {
+    	health -= damage;
+    	checkHealth();
+    }
+    
     public boolean checkDeath() {
         return health <= 0; 
     }
@@ -70,7 +75,7 @@ public abstract class Enemy {
         return this.health;
     }
     
-    public void takeDamage(int damage) {
+    public void takeOnlyDamage(int damage) {
         this.health -= damage;
     }
     
