@@ -2,20 +2,20 @@ package application;
 
 import java.util.HashMap;
 import java.util.Queue;
-import java.util.Set;
+//import java.util.Set;    //Checkstyle said this import wasn't used
 
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.PathTransition;
+//import javafx.animation.KeyValue;    //Checkstyle said this import wasn't used
+//import javafx.animation.PathTransition;    //Checkstyle said this import wasn't used
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+//import javafx.animation.TranslateTransition;    //Checkstyle said this import wasn't used
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Line;
+//import javafx.scene.shape.Line;    //Checkstyle said this import wasn't used
 import javafx.util.Duration;
 
-public class GameLoop implements EventHandler<ActionEvent>{
+public class GameLoop implements EventHandler<ActionEvent> {
     
     private static long gameCounter = 0;
     private static double gameSpeed = 1;
@@ -38,11 +38,13 @@ public class GameLoop implements EventHandler<ActionEvent>{
     @Override
     public void handle(ActionEvent arg0) {
         
-        HashMap<Integer, Enemy> aliveEnemies = (HashMap<Integer, Enemy>) GameLoop.currWave.getAliveEnemies().clone();
+        HashMap<Integer, Enemy> aliveEnemies = (HashMap<Integer, Enemy>) 
+                GameLoop.currWave.getAliveEnemies().clone();
         if (ConfigEventHandler.getTruck().getHealth() <= 0) {
             Level.setPause(true);
             gameOver = true;
-            GameOver g = new GameOver(l.getStage(), Level.getScreenWidth(), Level.getScreenHeight());
+            GameOver g = new GameOver(l.getStage(), Level.getScreenWidth(), 
+                    Level.getScreenHeight());
             g.show();
         }
         if (!Level.getPause()) {
@@ -61,7 +63,8 @@ public class GameLoop implements EventHandler<ActionEvent>{
         timer.getKeyFrames().add(new KeyFrame(Duration.millis(16.6), e -> {
             if (!Level.getPause()) {
                 GameLoop.gameCounter++;
-            } if (!gameOver) {
+            }
+            if (!gameOver) {
                 this.handle(arg0);
             }
         }));

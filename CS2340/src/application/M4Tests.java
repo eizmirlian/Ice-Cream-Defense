@@ -72,24 +72,24 @@ public class M4Tests {
     }
     @Test
     public void jgEnemyDamageTest() {
-    	NormKid testEnemy = new NormKid(new Path(0,0,0,0));
-    	testEnemy.takeDamage(50);
-    	Assert.assertFalse(testEnemy.checkHealth());
-    	testEnemy.takeDamage(50);
-    	Assert.assertTrue(testEnemy.checkHealth());
+        NormKid testEnemy = new NormKid(new Path(0, 0, 0, 0));
+        testEnemy.takeDamage(50);
+        Assert.assertFalse(testEnemy.checkHealth());
+        testEnemy.takeDamage(50);
+        Assert.assertTrue(testEnemy.checkHealth());
     }
 
     @Test
     public void jgEnemyPosTest() {
-    	NormKid testEnemy = new NormKid(new Path(0,0,0,0));
-    	double testArr[] = {0.0,0.0};
-    	testEnemy.takeDamage(50);
-    	Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
-    	testArr[0] = 1.0;
-    	testArr[1] = 2.5;
-    	testEnemy.setPos(testArr);
-    	testEnemy.takeDamage(1);
-    	Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
+        NormKid testEnemy = new NormKid(new Path(0, 0, 0, 0));
+        double[] testArr = {0.0, 0.0};
+        testEnemy.takeDamage(50);
+        Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
+        testArr[0] = 1.0;
+        testArr[1] = 2.5;
+        testEnemy.setPos(testArr);
+        testEnemy.takeDamage(1);
+        Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
     }
     @Test 
     public void brandonBuyTowerTest() {

@@ -18,12 +18,18 @@ public abstract class Enemy {
     }
     
     public double[] move() {
-        double diffY = ((curr.getNextPos()[0]) * Enemy.unitHeight - prevPos[0]) * speed / GameLoop.getfps();
-        double diffX = ((curr.getNextPos()[1]) * Enemy.unitWidth - prevPos[1]) * speed / GameLoop.getfps();
+        double diffY = ((curr.getNextPos()[0]) * Enemy.unitHeight - prevPos[0]) 
+                * speed / GameLoop.getfps();
+        double diffX = ((curr.getNextPos()[1]) * Enemy.unitWidth - prevPos[1]) 
+                * speed / GameLoop.getfps();
         pos[0] = pos[0] + diffY;
         pos[1] = pos[1] + diffX;
-        boolean arrivedY = pos[0] >= curr.getNextPos()[0] * Enemy.unitHeight && pos[0] + this.getIcon().getFitHeight() <= (curr.getNextPos()[0] + 1) * Enemy.unitHeight;
-        boolean arrivedX = pos[1] >= curr.getNextPos()[1] * Enemy.unitWidth && pos[1] + this.getIcon().getFitWidth() <= (curr.getNextPos()[1] + 1) * Enemy.unitWidth;
+        boolean arrivedY = pos[0] >= curr.getNextPos()[0] * Enemy.unitHeight 
+                && pos[0] + this.getIcon().getFitHeight() 
+                <= (curr.getNextPos()[0] + 1) * Enemy.unitHeight;
+        boolean arrivedX = pos[1] >= curr.getNextPos()[1] * Enemy.unitWidth 
+                && pos[1] + this.getIcon().getFitWidth() 
+                <= (curr.getNextPos()[1] + 1) * Enemy.unitWidth;
         if (arrivedX && arrivedY) {
             if (this.curr.getLastTile()) {
                 ConfigEventHandler.getTruck().takeDamage(health);
@@ -51,8 +57,8 @@ public abstract class Enemy {
     }
     
     public void takeDamage(int damage) {
-    	health -= damage;
-    	checkHealth();
+        health -= damage;
+        checkHealth();
     }
     
     public boolean checkDeath() {
