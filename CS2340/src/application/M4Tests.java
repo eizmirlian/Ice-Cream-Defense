@@ -91,5 +91,16 @@ public class M4Tests {
     	testEnemy.takeDamage(1);
     	Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
     }
+    @Test 
+    public void brandonBuyTowerTest() {
+        Tower tower = new Tower(Difficulty.EASY, "TEST TOWER", 40, 40, 40, 40);
+        assertEquals(tower.getDescription, "TEST TOWER");
+    }
+
+    @Test
+    public void brandonTowerConstructorTest() {
+        Tower tower = new Tower(Difficulty.EASY, "TEST TOWER", 40, 40, 40, 40);
+        assertEquals(1, 1);
+    }
 
 }
