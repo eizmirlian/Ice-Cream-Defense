@@ -21,16 +21,16 @@ public class EnemyWave {
             Enemy enemy;
             switch (e) {
             case LIGHT:
-                enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())));
+                enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())), true);
                 break;
             case MEDIUM:
-                enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())));
+                enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())), true);
                 break;
             case HEAVY:
-                enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())));
+                enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())), true);
                 break;
             default:
-                enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())));
+                enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())), true);
             }
             totalEnemies.put(id, enemy);
             enemy.setID(id);

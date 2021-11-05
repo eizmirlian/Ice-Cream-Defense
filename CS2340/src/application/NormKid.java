@@ -4,12 +4,11 @@ import javafx.scene.image.ImageView;
 
 public class NormKid extends Enemy {
     
-    private ImageView icon = new ImageView("file:src/enemyNormKid.png");
+    private ImageView icon;
     
-    public NormKid(Path entry) {
+    public NormKid(Path entry, boolean f) {
         super(100, 3.0);
-        this.icon.setFitWidth(super.getUnitWidth());
-        this.icon.setFitHeight(super.getUnitHeight());
+        
         double[] pos = new double[2];
         if (entry.getPos()[0] == 0) {
             pos[0] = (entry.getPos()[0] * super.getUnitHeight()) - (super.getUnitHeight());
@@ -30,16 +29,16 @@ public class NormKid extends Enemy {
                 entry.getPos()[0], entry.getPos()[1]);
         preEntry.setNext(entry);
         super.setCurr(preEntry);
-        icon.setManaged(false);
-        icon.setLayoutX(super.getPos()[1]);
-        icon.setLayoutY(super.getPos()[0]);
+        if (f) {
+            icon = new ImageView("file:src/enemyNormKid.png");
+            icon.setManaged(false);
+            icon.setLayoutX(super.getPos()[1]);
+            icon.setLayoutY(super.getPos()[0]);
+            this.icon.setFitWidth(super.getUnitWidth());
+            this.icon.setFitHeight(super.getUnitHeight());
+        }
     }
     
-    @Override
-    public boolean checkHealth() {
-        // TODO Auto-generated method stub
-        return false;
-    }
 
 
     @Override

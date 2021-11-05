@@ -25,10 +25,10 @@ public abstract class Enemy {
         pos[0] = pos[0] + diffY;
         pos[1] = pos[1] + diffX;
         boolean arrivedY = pos[0] >= curr.getNextPos()[0] * Enemy.unitHeight 
-                && pos[0] + this.getIcon().getFitHeight() 
+                && pos[0] + unitHeight
                 <= (curr.getNextPos()[0] + 1) * Enemy.unitHeight;
         boolean arrivedX = pos[1] >= curr.getNextPos()[1] * Enemy.unitWidth 
-                && pos[1] + this.getIcon().getFitWidth() 
+                && pos[1] + unitWidth
                 <= (curr.getNextPos()[1] + 1) * Enemy.unitWidth;
         if (arrivedX && arrivedY) {
             if (this.curr.getLastTile()) {

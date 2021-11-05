@@ -2,7 +2,7 @@ package application;
 
 import javafx.scene.image.ImageView;
 
-public abstract class Tower {
+public class Tower {
     private String description;
     private Difficulty diff;
     private int price;

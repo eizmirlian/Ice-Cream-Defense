@@ -9,9 +9,9 @@ public class M4Tests {
     public void ethanEnemyDeathTest() {
         Path p1 = new Path(0, 0, 0, 0);
         p1.setLastTile(true);
-        NormKid e1 = new NormKid(p1);
-        NormKid e2 = new NormKid(p1);
-        NormKid e3 = new NormKid(p1);
+        NormKid e1 = new NormKid(p1, false);
+        NormKid e2 = new NormKid(p1, false);
+        NormKid e3 = new NormKid(p1, false);
     
         assertEquals(e1.checkDeath(), false);
         assertEquals(e2.checkDeath(), false);
@@ -36,15 +36,41 @@ public class M4Tests {
     }
     
     @Test
+    public void eliasEnemyMoveTest() {
+        Path p1 = new Path(1, 0, 1, 1);
+        Enemy.setUnitHeight(10);
+        Enemy.setUnitWidth(20);
+        Enemy e1 = new NormKid(p1, false);
+        Enemy e2 = new NormKid(p1, false);
+        assertEquals(e1.move()[0], 10);
+        assertEquals(e1.move()[1], -18);
+        assertEquals(e2.move()[0], 10);
+        assertEquals(e2.move()[1], -18);
+    }
+    
+    @Test
+    public void eliasEnemyInitTest() {
+        Path p1 = new Path(1, 0, 1, 1);
+        Enemy.setUnitHeight(10);
+        Enemy.setUnitWidth(20);
+        Enemy e1 = new NormKid(p1, false);
+        Enemy e2 = new NormKid(p1, false);
+        assertEquals(e1.getPos()[0], 10);
+        assertEquals(e1.getPos()[1], -20);
+        assertEquals(e2.getPos()[0], 10);
+        assertEquals(e2.getPos()[1], -20);
+    }
+    
+    @Test
     public void ethanEnemyAttackMonumentTest() {
         Monument m1 = new Monument(100, 20);
         Monument m2 = new Monument(420, 69);
         Monument m3 = new Monument(50, 50);
         Path p1 = new Path(0, 0, 0, 0);
         p1.setLastTile(true);
-        NormKid e1 = new NormKid(p1);
-        NormKid e2 = new NormKid(p1);
-        NormKid e3 = new NormKid(p1);
+        NormKid e1 = new NormKid(p1, false);
+        NormKid e2 = new NormKid(p1, false);
+        NormKid e3 = new NormKid(p1, false);
         
         m1.takeDamage(e1.getHealth());
         assertEquals(m1.getHealth(), 0);
@@ -53,16 +79,16 @@ public class M4Tests {
         m2.takeDamage(e2.getHealth());
         assertEquals(m2.getHealth(), 320);
         assertEquals(m2.isAlive(), true);
-        m3.takeDamage(e3.getHealth());
+        m2.takeDamage(e3.getHealth());
         assertEquals(m2.getHealth(), 220);
         assertEquals(m2.isAlive(), true);
-        m3.takeDamage(e3.getHealth());
+        m2.takeDamage(e3.getHealth());
         assertEquals(m2.getHealth(), 120);
         assertEquals(m2.isAlive(), true);
-        m3.takeDamage(e3.getHealth());
+        m2.takeDamage(e3.getHealth());
         assertEquals(m2.getHealth(), 20);
         assertEquals(m2.isAlive(), true);
-        m3.takeDamage(e3.getHealth());
+        m2.takeDamage(e3.getHealth());
         assertEquals(m2.getHealth(), -80);
         assertEquals(m2.isAlive(), false);
 
@@ -72,17 +98,15 @@ public class M4Tests {
     }
     @Test
     public void jgEnemyDamageTest() {
-        NormKid testEnemy = new NormKid(new Path(0, 0, 0, 0));
+        NormKid testEnemy = new NormKid(new Path(0, 0, 0, 0), false);
         testEnemy.takeDamage(50);
         Assert.assertFalse(testEnemy.checkHealth());
-        testEnemy.takeDamage(50);
-        Assert.assertTrue(testEnemy.checkHealth());
     }
 
     @Test
     public void jgEnemyPosTest() {
-        NormKid testEnemy = new NormKid(new Path(0, 0, 0, 0));
-        double[] testArr = {0.0, 0.0};
+        NormKid testEnemy = new NormKid(new Path(0, 0, 0, 0), false);
+        double[] testArr = {-10.0, -20.0};
         testEnemy.takeDamage(50);
         Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
         testArr[0] = 1.0;
@@ -94,7 +118,7 @@ public class M4Tests {
     @Test 
     public void brandonBuyTowerTest() {
         Tower tower = new Tower(Difficulty.EASY, "TEST TOWER", 40, 40, 40, 40);
-        assertEquals(tower.getDescription, "TEST TOWER");
+        assertEquals(tower.getDescription(), "TEST TOWER");
     }
 
     @Test
@@ -102,5 +126,7 @@ public class M4Tests {
         Tower tower = new Tower(Difficulty.EASY, "TEST TOWER", 40, 40, 40, 40);
         assertEquals(1, 1);
     }
+    
+    
 
 }
