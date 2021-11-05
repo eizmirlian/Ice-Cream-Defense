@@ -37,11 +37,6 @@ public abstract class Enemy {
         return this.pos;
     }
     
-    public void takeDamage(int damage) {
-    	this.health -= damage;
-    	checkHealth();
-    }
-    
     public void die() {
         GameLoop.getCurrWave().enemyDead(this.id);
         this.getIcon().setVisible(false);
@@ -53,6 +48,11 @@ public abstract class Enemy {
             return true;
         }
         return false;
+    }
+    
+    public void takeDamage(int damage) {
+    	health -= damage;
+    	checkHealth();
     }
     
     public boolean checkDeath() {

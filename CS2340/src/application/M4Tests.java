@@ -1,6 +1,7 @@
 package application;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 public class M4Tests {
@@ -19,7 +20,6 @@ public class M4Tests {
         assertEquals(e1.checkDeath(), true);
         e1.takeOnlyDamage(100);
         assertEquals(e1.checkDeath(), true);
-    
         e2.takeOnlyDamage(10);
         assertEquals(e2.checkDeath(), false);
         e2.takeOnlyDamage(20);
@@ -69,6 +69,27 @@ public class M4Tests {
         m3.takeDamage(e3.getHealth());
         assertEquals(m3.getHealth(), -50);
         assertEquals(m3.isAlive(), false);
+    }
+    @Test
+    public void jgEnemyDamageTest() {
+    	NormKid testEnemy = new NormKid(new Path(0,0,0,0));
+    	testEnemy.takeDamage(50);
+    	Assert.assertFalse(testEnemy.checkHealth());
+    	testEnemy.takeDamage(50);
+    	Assert.assertTrue(testEnemy.checkHealth());
+    }
+
+    @Test
+    public void jgEnemyPosTest() {
+    	NormKid testEnemy = new NormKid(new Path(0,0,0,0));
+    	double testArr[] = {0.0,0.0};
+    	testEnemy.takeDamage(50);
+    	Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
+    	testArr[0] = 1.0;
+    	testArr[1] = 2.5;
+    	testEnemy.setPos(testArr);
+    	testEnemy.takeDamage(1);
+    	Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
     }
 
 }
