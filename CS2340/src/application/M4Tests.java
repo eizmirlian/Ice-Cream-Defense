@@ -1,9 +1,10 @@
 package application;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-public class M3Tests {
+public class M4Tests {
     @Test
     public void ethanEnemyDeathTest() {
         Path p1 = new Path(0, 0, 0, 0);
@@ -12,13 +13,13 @@ public class M3Tests {
         NormKid e2 = new NormKid(p1);
         NormKid e3 = new NormKid(p1);
     
-        assertEquals(el.checkDeath(), false);
+        assertEquals(e1.checkDeath(), false);
         assertEquals(e2.checkDeath(), false);
         assertEquals(e3.checkDeath(), false);
         e1.takeDamage(100);
-        assertEquals(el.checkDeath(), true);
+        assertEquals(e1.checkDeath(), true);
         e1.takeDamage(100);
-        assertEquals(el.checkDeath(), true);
+        assertEquals(e1.checkDeath(), true);
     
         e2.takeDamage(10);
         assertEquals(e2.checkDeath(), false);
@@ -69,6 +70,27 @@ public class M3Tests {
         m3.takeDamage(e3.getHealth());
         assertEquals(m3.getHealth(), -50);
         assertEquals(m3.isAlive(), false);
+    }
+    @Test
+    public void jgEnemyDamageTest() {
+    	NormKid testEnemy = new NormKid(new Path(0,0,0,0));
+    	testEnemy.takeDamage(50);
+    	Assert.assertFalse(testEnemy.checkHealth());
+    	testEnemy.takeDamage(50);
+    	Assert.assertTrue(testEnemy.checkHealth());
+    }
+
+    @Test
+    public void jgEnemyPosTest() {
+    	NormKid testEnemy = new NormKid(new Path(0,0,0,0));
+    	double testArr[] = {0.0,0.0};
+    	testEnemy.takeDamage(50);
+    	Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
+    	testArr[0] = 1.0;
+    	testArr[1] = 2.5;
+    	testEnemy.setPos(testArr);
+    	testEnemy.takeDamage(1);
+    	Assert.assertArrayEquals(testEnemy.getPos(), testArr, 0);
     }
 
 }
