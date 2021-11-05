@@ -50,6 +50,10 @@ public abstract class Enemy {
         return false;
     }
     
+    public boolean checkDeath() {
+        return health <= 0; 
+    }
+    
     public int getUnitWidth() {
         return Enemy.unitWidth;
     }
@@ -64,6 +68,10 @@ public abstract class Enemy {
     
     public int getHealth() {
         return this.health;
+    }
+    
+    public void takeDamage(int damage) {
+        this.health -= damage;
     }
     
     public void setPos(double[] pos) {

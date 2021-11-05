@@ -9,22 +9,45 @@ public class M3Tests {
     //This is important because we need to ensure that once the ability for towers to attack enemies is correctly implemented, 
     //these enemies will die/be deleted given the correct commands to ensure that they function as intended.
     public void ethanEnemyDeathTest() {
-    	
+        Path p1 = new Path(0, 0, 0, 0);
+        p1.setLastTile(true);
+        NormKid e1 = new NormKid(p1);
+        NormKid e2 = new NormKid(p1);
+        NormKid e3 = new NormKid(p1);
+    
+        assertEquals(el.checkDeath(), false);
+        assertEquals(e2.checkDeath(), false);
+        assertEquals(e3.checkDeath(), false);
+        e1.takeDamage(100);
+        assertEquals(el.checkDeath(), true);
+        e1.takeDamage(100);
+        assertEquals(el.checkDeath(), true);
+    
+        e2.takeDamage(10);
+        assertEquals(e2.checkDeath(), false);
+        e2.takeDamage(20);
+        assertEquals(e2.checkDeath(), false);
+        e2.takeDamage(200);
+        assertEquals(e2.checkDeath(), true);
+        
+        e3.takeDamage(110);
+        assertEquals(e3.checkDeath(), true);
+        e3.takeDamage(-20);
+        assertEquals(e3.checkDeath(), false);
+        e3.takeDamage(10);
+        assertEquals(e3.checkDeath(), true);
     }
     
     @Test
-    //This test tests an enemy’s conditions for death, either being that they have no more health or if they attack the monument they will be deleted. 
-    //This is important because we need to ensure that once the ability for towers to attack enemies is correctly implemented, 
-    //these enemies will die/be deleted given the correct commands to ensure that they function as intended.
     public void ethanEnemyAttackMonumentTest() {
-    	Monument m1 = new Monument(100, 20);
-    	Monument m2 = new Monument(420, 69);
-    	Monument m3 = new Monument(50, 50);
-    	Path p1 = new Path(0, 0, 0, 0);
-    	p1.setLastTile(true);
-    	NormKid e1 = new NormKid(p1);
-    	NormKid e2 = new NormKid(p1);
-    	NormKid e3 = new NormKid(p1);
+        Monument m1 = new Monument(100, 20);
+        Monument m2 = new Monument(420, 69);
+        Monument m3 = new Monument(50, 50);
+        Path p1 = new Path(0, 0, 0, 0);
+        p1.setLastTile(true);
+        NormKid e1 = new NormKid(p1);
+        NormKid e2 = new NormKid(p1);
+        NormKid e3 = new NormKid(p1);
         
         m1.takeDamage(e1.getHealth());
         assertEquals(m1.getHealth(), 0);
