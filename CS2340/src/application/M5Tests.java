@@ -35,6 +35,7 @@ public class M5Tests {
         
     }
     
+    @Test
     public void eliasSpeedDiffTest() {
         Enemy enemy1 = new Enemy(50, 20.0);
         Enemy enemy2 = new Enemy(30, 30.0);
