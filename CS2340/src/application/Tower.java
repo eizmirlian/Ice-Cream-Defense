@@ -106,6 +106,10 @@ public class Tower {
         }
     }
     
+    public int getDamage() {
+        return this.damage;
+    }
+    
     public ImageView getIcon() {
         return icon;
     }
