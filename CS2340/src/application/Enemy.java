@@ -34,7 +34,7 @@ public abstract class Enemy {
         Path preEntry = new Path(entry.getPos()[0], entry.getPos()[1], 
                 entry.getPos()[0], entry.getPos()[1]);
         preEntry.setNext(entry);
-       curr = preEntry;
+        curr = preEntry;
     }
     
     public double[] move() {
@@ -131,7 +131,7 @@ public abstract class Enemy {
     }
     
     public double getSpeed() {
-    	return this.speed;
+        return this.speed;
     }
     
     public void setID(int id) {

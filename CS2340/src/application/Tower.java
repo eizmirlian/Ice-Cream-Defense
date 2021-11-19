@@ -9,7 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 public class Tower {
-	
+    
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
@@ -31,12 +31,11 @@ public class Tower {
     
     public Tower(Difficulty diff, String description, int price, int range,
             int damage, double fireRate) {
-    	
-        int screenX = ((int)screenSize.getWidth());
-        int screenY = (int)screenSize.getHeight();
-        int screenXFit = (int)((screenX - (screenX%150))*0.08);
-        int screenYFit = (int)((screenY - (screenY%150))*0.04);
-    	
+        
+        int screenX = ((int) screenSize.getWidth());
+        int screenY = (int) screenSize.getHeight();
+        int screenXFit = (int) ((screenX - (screenX % 150)) * 0.08);
+        int screenYFit = (int) ((screenY - (screenY % 150)) * 0.04);
         this.diff = diff;
         this.description = description;
         this.price = price;
@@ -55,7 +54,8 @@ public class Tower {
         double[] temp = new double[2];
         temp[0] = (location.getPos()[0] + 1) * fitHeight;
         temp[1] = (location.getPos()[1] + 1) * fitWidth;
-        Projectile p = new Projectile(targeted, temp, icon, projectileSpeed, damage, pFitWidth, pFitHeight);
+        Projectile p = new Projectile(targeted, temp, icon, 
+            projectileSpeed, damage, pFitWidth, pFitHeight);
         Tower.g.getChildren().add(icon);
         return p;
         
@@ -71,7 +71,8 @@ public class Tower {
             while (j < effectiveRange) {
                 int xCoord = upperLeftX + i;
                 int yCoord = upperLeftY + j;
-                if (xCoord >= 0 && yCoord >= 0 && xCoord < allPaths[0].length && yCoord < allPaths.length) {
+                if (xCoord >= 0 && yCoord >= 0 && xCoord < allPaths[0].length 
+                        && yCoord < allPaths.length) {
                     Path p = allPaths[upperLeftY + j][upperLeftX + i];
                     if (p != null) {
                         p.addTower(this);
@@ -145,6 +146,6 @@ public class Tower {
     }
     
     public int getDamage() {
-    	return this.damage;
+        return this.damage;
     }
 }

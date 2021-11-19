@@ -59,10 +59,10 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
         towerMenu.setBottom(others);
         others.setAlignment(Pos.CENTER);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenX = (int)screenSize.getWidth();
-        int screenY = (int)screenSize.getHeight();
-        screenX = screenX - (screenX%150);
-        screenY = screenY - (screenY%150);
+        int screenX = (int) screenSize.getWidth();
+        int screenY = (int) screenSize.getHeight();
+        screenX = screenX - (screenX % 150);
+        screenY = screenY - (screenY % 150);
         
         if (grass.getTower() == null) {
             
@@ -71,8 +71,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             VanillaCatapult v = new VanillaCatapult(diff);
             v.setGrass(grass);
             ImageView vanillaCatapult = v.getIcon();
-            vanillaCatapult.setFitWidth(screenX*0.15);
-            vanillaCatapult.setFitHeight(screenY*0.12);
+            vanillaCatapult.setFitWidth(screenX * 0.15);
+            vanillaCatapult.setFitHeight(screenY * 0.12);
             Text towerTitle1 = new Text("VANILLA\nCATAPULT");
             towerTitle1.setStyle("-fx-fill: yellow;-fx-font: 24px Stencil");
             Text price1 = new Text("Price: " + v.getPrice());
@@ -91,8 +91,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             WaffleConeLauncher w = new WaffleConeLauncher(diff);
             w.setGrass(grass);
             ImageView waffleConeLauncher = w.getIcon();
-            waffleConeLauncher.setFitWidth(screenX*0.15);
-            waffleConeLauncher.setFitHeight(screenY*0.12);
+            waffleConeLauncher.setFitWidth(screenX * 0.15);
+            waffleConeLauncher.setFitHeight(screenY * 0.12);
             Text towerTitle2 = new Text("WAFFLE CONE\nLAUNCHER");
             towerTitle2.setStyle("-fx-fill: yellow;-fx-font: 24px Stencil");
             Text price2 = new Text("Price: " + w.getPrice());
@@ -112,8 +112,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             ChocolateChipGatlingGun c = new ChocolateChipGatlingGun(diff);
             c.setGrass(grass);
             ImageView chocChipGatlingGun = c.getIcon();
-            chocChipGatlingGun.setFitWidth(screenX*0.15);
-            chocChipGatlingGun.setFitHeight(screenY*0.12);
+            chocChipGatlingGun.setFitWidth(screenX * 0.15);
+            chocChipGatlingGun.setFitHeight(screenY * 0.12);
             Text towerTitle3 = new Text("CHOCOLATE CHIP\nGATLING GUN");
             towerTitle3.setStyle("-fx-fill: yellow;-fx-font: 24px Stencil");
             Text price3 = new Text("Price: " + c.getPrice());

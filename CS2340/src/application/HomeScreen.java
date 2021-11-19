@@ -36,10 +36,10 @@ public class HomeScreen extends Application {
         BorderPane.setAlignment(title, Pos.CENTER);
         homeRoot.setCenter(start);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenX = (int)screenSize.getWidth();
-        int screenY = (int)screenSize.getHeight();
-        screenX = screenX - (screenX%150);
-        screenY = screenY - (screenY%150);
+        int screenX = (int) screenSize.getWidth();
+        int screenY = (int) screenSize.getHeight();
+        screenX = screenX - (screenX % 150);
+        screenY = screenY - (screenY % 150);
         Scene homepage = new Scene(homeRoot, screenX, screenY);
         primaryStage.setScene(homepage);
         
