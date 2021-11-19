@@ -14,17 +14,11 @@ public class WaffleConeLauncher extends Tower {
     }
     
     @Override
-    public void fire() {
-        // TODO Auto-generated method stub
-
+    public Projectile fire() {
+        ImageView pIcon = new ImageView();
+        return super.fire(pIcon, 10, super.fitWidth / 5, super.fitHeight / 5);
     }
-
-    @Override
-    public void checkRange() {
-        // TODO Auto-generated method stub
-
-    }
-
+    
     @Override
     public void upgrade() {
         // TODO Auto-generated method stub

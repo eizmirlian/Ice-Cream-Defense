@@ -87,7 +87,7 @@ public class M3Tests {
         Path c = new Path(1, 1, 1, 0);
         Path d = new Path(1, 0, 0, 0);
         
-        Enemy e = new NormKid(a, false);
+        Enemy e = new NormKid(a);
         int[] testPos1 = {0, 0};
         int[] testPos2 = {0, 1};
         

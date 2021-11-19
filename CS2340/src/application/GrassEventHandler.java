@@ -63,6 +63,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             
             VBox towerOptions1 = new VBox();
             VanillaCatapult v = new VanillaCatapult(diff);
+            v.setGrass(grass);
             ImageView vanillaCatapult = v.getIcon();
             vanillaCatapult.setFitWidth(150);
             vanillaCatapult.setFitHeight(120);
@@ -82,6 +83,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             
             VBox towerOptions2 = new VBox();
             WaffleConeLauncher w = new WaffleConeLauncher(diff);
+            w.setGrass(grass);
             ImageView waffleConeLauncher = w.getIcon();
             waffleConeLauncher.setFitWidth(150);
             waffleConeLauncher.setFitHeight(120);
@@ -102,6 +104,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             
             VBox towerOptions3 = new VBox();
             ChocolateChipGatlingGun c = new ChocolateChipGatlingGun(diff);
+            c.setGrass(grass);
             ImageView chocChipGatlingGun = c.getIcon();
             chocChipGatlingGun.setFitWidth(150);
             chocChipGatlingGun.setFitHeight(120);
