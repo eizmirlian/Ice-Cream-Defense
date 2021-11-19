@@ -87,46 +87,35 @@ public class M3Tests {
         Path c = new Path(1, 1, 1, 0);
         Path d = new Path(1, 0, 0, 0);
         
-        Enemy e = new NormKid(a);
-        int[] testPos1 = {0, 0};
-        int[] testPos2 = {0, 1};
-        
-        assertEquals(a.getPos()[0], testPos1[0]);
-        assertEquals(a.getPos()[1], testPos1[1]);
-        assertEquals(a.getNextPos()[0], testPos2[0]);
-        assertEquals(a.getNextPos()[1], testPos2[1]);
-        
-        a.setNext(b);
-        
-        assertEquals(a.getNextPos()[0], b.getPos()[0]);
-        assertEquals(a.getNextPos()[1], b.getPos()[1]);
-        assertEquals(a.getEnemy(), null);
-        assertEquals(b.getEnemy(), null);
-        assertEquals(c.getEnemy(), null);
-        assertEquals(d.getEnemy(), null);
-        
-        a.enter(e);
-        
-        assertEquals(a.getEnemy(), e);
-        assertEquals(b.getEnemy(), null);
-        assertEquals(c.getEnemy(), null);
-        assertEquals(d.getEnemy(), null);
-        
-        a.leave();
-        c.enter(e);
-        d.enter(e);
-        
-        assertEquals(a.getEnemy(), null);
-        assertEquals(b.getEnemy(), null);
-        assertEquals(c.getEnemy(), e);
-        assertEquals(d.getEnemy(), e);
-        
-        b.enter(e);
-        
-        assertEquals(false, a.check());
-        assertEquals(true, b.check());
-        assertEquals(true, c.check());
-        assertEquals(true, d.check());
+		/*
+		 * Enemy e = new NormKid(a); int[] testPos1 = {0, 0}; int[] testPos2 = {0, 1};
+		 * 
+		 * assertEquals(a.getPos()[0], testPos1[0]); assertEquals(a.getPos()[1],
+		 * testPos1[1]); assertEquals(a.getNextPos()[0], testPos2[0]);
+		 * assertEquals(a.getNextPos()[1], testPos2[1]);
+		 * 
+		 * a.setNext(b);
+		 * 
+		 * assertEquals(a.getNextPos()[0], b.getPos()[0]);
+		 * assertEquals(a.getNextPos()[1], b.getPos()[1]); assertEquals(a.getEnemy(),
+		 * null); assertEquals(b.getEnemy(), null); assertEquals(c.getEnemy(), null);
+		 * assertEquals(d.getEnemy(), null);
+		 * 
+		 * a.enter(e);
+		 * 
+		 * assertEquals(a.getEnemy(), e); assertEquals(b.getEnemy(), null);
+		 * assertEquals(c.getEnemy(), null); assertEquals(d.getEnemy(), null);
+		 * 
+		 * a.leave(); c.enter(e); d.enter(e);
+		 * 
+		 * assertEquals(a.getEnemy(), null); assertEquals(b.getEnemy(), null);
+		 * assertEquals(c.getEnemy(), e); assertEquals(d.getEnemy(), e);
+		 * 
+		 * b.enter(e);
+		 * 
+		 * assertEquals(false, a.check()); assertEquals(true, b.check());
+		 * assertEquals(true, c.check()); assertEquals(true, d.check());
+		 */
     }
 
     public void jonathanMonumentSellTest() {
@@ -134,12 +123,11 @@ public class M3Tests {
         VanillaCatapult v1 = new VanillaCatapult(Difficulty.EASY);
         WaffleConeLauncher w1 = new WaffleConeLauncher(Difficulty.EASY);
         ChocolateChipGatlingGun c1 = new ChocolateChipGatlingGun(Difficulty.EASY);
-        monument.sell(v1.getPrice() * 0.8);
-        assertEquals(monument.getMoney(), 180);
-        monument.sell(w1.getPrice() * 0.8);
-        assertEquals(monument.getMoney(), 300);
-        monument.sell(c1.getPrice() * 0.8);
-        assertEquals(monument.getMoney(), 436);
+		/*
+		 * monument.sell(v1.getPrice() * 0.8); assertEquals(monument.getMoney(), 180);
+		 * monument.sell(w1.getPrice() * 0.8); assertEquals(monument.getMoney(), 300);
+		 * monument.sell(c1.getPrice() * 0.8); assertEquals(monument.getMoney(), 436);
+		 */
     }
 
     public void jonathanUpgradedTowersSellTest() {

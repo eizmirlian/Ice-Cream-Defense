@@ -123,6 +123,10 @@ public abstract class Enemy {
         return this.id;
     }
     
+    public double getSpeed() {
+    	return this.speed;
+    }
+    
     public void setID(int id) {
         this.id = id;
     }

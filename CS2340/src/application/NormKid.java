@@ -18,6 +18,18 @@ public class NormKid extends Enemy {
         }
     }
     
+    public NormKid(Path entry, int speed, boolean f) {
+        super(100, speed, entry);
+        if (f) {
+            icon = new ImageView("file:src/enemyNormKid.png");
+            icon.setManaged(false);
+            icon.setLayoutX(super.getPos()[1]);
+            icon.setLayoutY(super.getPos()[0]);
+            this.icon.setFitWidth(super.getUnitWidth());
+            this.icon.setFitHeight(super.getUnitHeight());
+        }
+    }
+    
 
 
     @Override
