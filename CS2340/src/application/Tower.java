@@ -1,16 +1,12 @@
 package application;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.LinkedList;
+
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 public class Tower {
-	
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
     private String description;
     private Difficulty diff;
     private int price;
@@ -18,7 +14,7 @@ public class Tower {
     private int damage;
     private double fireRate;
     protected int fitWidth = 88;
-    protected int fitHeight = 10;
+    protected int fitHeight = 70;
     private ImageView icon;
     private Grass location;
     private static Path[][] allPaths;
@@ -29,22 +25,12 @@ public class Tower {
     
     public Tower(Difficulty diff, String description, int price, int range,
             int damage, double fireRate) {
-        int screenX = ((int)screenSize.getWidth());
-        int screenY = (int)screenSize.getHeight();
-        int screenXFit = (int)((screenX - (screenX%150))*0.08);
-        int screenYFit = (int)((screenY - (screenY%150))*0.04);
-      
-      
         this.diff = diff;
         this.description = description;
         this.price = price;
         this.range = range;
         this.damage = damage;
         this.fireRate = fireRate;
-        this.fitWidth = screenXFit;
-        this.fitHeight = screenYFit;
-        
-        
     }
     
     public Projectile fire() {
@@ -53,8 +39,8 @@ public class Tower {
     
     public Projectile fire(ImageView icon, int projectileSpeed, int pFitWidth, int pFitHeight) {
         double[] temp = new double[2];
-        temp[0] = (location.getPos()[0] + .5) * fitHeight;
-        temp[1] = (location.getPos()[1] + .5) * fitWidth;
+        temp[0] = (location.getPos()[0] + 1) * fitHeight;
+        temp[1] = (location.getPos()[1] + 1) * fitWidth;
         Projectile p = new Projectile(targeted, temp, icon, projectileSpeed, damage, pFitWidth, pFitHeight);
         Tower.g.getChildren().add(icon);
         return p;
@@ -118,10 +104,6 @@ public class Tower {
         default:
             return 0;
         }
-    }
-    
-    public int getDamage() {
-        return this.damage;
     }
     
     public ImageView getIcon() {

@@ -1,8 +1,5 @@
 package application;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -36,12 +33,7 @@ public class HomeScreen extends Application {
         homeRoot.setTop(title);
         BorderPane.setAlignment(title, Pos.CENTER);
         homeRoot.setCenter(start);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenX = (int)screenSize.getWidth();
-        int screenY = (int)screenSize.getHeight();
-        screenX = screenX - (screenX%150);
-        screenY = screenY - (screenY%150);
-        Scene homepage = new Scene(homeRoot, screenX, screenY);
+        Scene homepage = new Scene(homeRoot, 1500, 1200);
         primaryStage.setScene(homepage);
         
         
@@ -80,7 +72,7 @@ public class HomeScreen extends Application {
         configRoot.setCenter(setupContainer);
         configRoot.setBottom(errorMessage);
         BorderPane.setAlignment(errorMessage, Pos.CENTER);
-        Scene config = new Scene(configRoot, screenX, screenY);
+        Scene config = new Scene(configRoot, 1500, 1200);
         
         
         

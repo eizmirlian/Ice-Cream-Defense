@@ -8,7 +8,7 @@ private ImageView icon;
     public HeavyKid(Path entry, boolean f) {
         super(300, 1, entry);
         if (f) {
-            icon = new ImageView("file:src/enemyNormKid.png");
+            icon = new ImageView("file:src/enemyHeavyKid.png");
             icon.setManaged(false);
             icon.setLayoutX(super.getPos()[1]);
             icon.setLayoutY(super.getPos()[0]);
@@ -16,8 +16,6 @@ private ImageView icon;
             this.icon.setFitHeight(super.getUnitHeight());
         }
     }
-    
-
 
     @Override
     public ImageView getIcon() {
