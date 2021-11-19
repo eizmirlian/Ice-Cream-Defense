@@ -11,20 +11,15 @@ public class ChocolateChipGatlingGun extends Tower {
             + "\na high rate of fire and low range";
     
     public ChocolateChipGatlingGun(Difficulty diff) {
-        super(diff, description, 170, 1, 10, 5);
+        super(diff, description, 170, 1, 10, 8);
     }
     
     @Override
     public Projectile fire() {
-        ImageView pIcon = new ImageView();
+        ImageView pIcon = new ImageView(new Image("file:src/chocChip.png"));
         return super.fire(pIcon, 10, super.fitWidth / 5, super.fitHeight / 5);
     }
 
-    @Override
-    public void checkRange() {
-        // TODO Auto-generated method stub
-
-    }
 
     @Override
     public void upgrade() {

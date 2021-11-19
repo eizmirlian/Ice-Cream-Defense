@@ -14,7 +14,7 @@ public class VanillaCatapult extends Tower {
     }
     @Override
     public Projectile fire() {
-        ImageView pIcon = new ImageView(new Image("file:src/vanillacatapult.png"));
+        ImageView pIcon = new ImageView(new Image("file:src/vanillaScoop.png"));
         return super.fire(pIcon, 9, super.fitWidth / 2, super.fitHeight / 2);
     }
 
