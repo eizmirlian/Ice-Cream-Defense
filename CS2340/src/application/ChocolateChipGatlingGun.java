@@ -11,7 +11,7 @@ public class ChocolateChipGatlingGun extends Tower {
             + "\na high rate of fire and low range";
     
     public ChocolateChipGatlingGun(Difficulty diff) {
-        super(diff, description, 170, 0, 0, 0);
+        super(diff, description, 170, 1, 10, 5);
     }
     
     @Override

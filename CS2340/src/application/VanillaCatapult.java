@@ -10,13 +10,12 @@ public class VanillaCatapult extends Tower {
             + "ice cream at enemies!\nStandard damage and rate of\nfire, with a lot of range.";
     
     public VanillaCatapult(Difficulty diff) {
-        super(diff, description, 100, 3, 30, 1);
+        super(diff, description, 100, 3, 25, 1.0);
     }
     @Override
     public Projectile fire() {
-        System.out.println("fired");
         ImageView pIcon = new ImageView(new Image("file:src/vanillacatapult.png"));
-        return super.fire(pIcon, 10, super.fitWidth / 3, super.fitHeight / 3);
+        return super.fire(pIcon, 9, super.fitWidth / 2, super.fitHeight / 2);
     }
 
 

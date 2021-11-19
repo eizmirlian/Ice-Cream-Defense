@@ -20,7 +20,7 @@ public class GameLoop implements EventHandler<ActionEvent> {
     
     private static long gameCounter = 0;
     private static double gameSpeed = 1;
-    private static double fps = 60;
+    private static double fps = 120;
     private Queue<EnemyWave> waves;
     private static EnemyWave currWave;
     private boolean gameOver = false;
@@ -54,7 +54,7 @@ public class GameLoop implements EventHandler<ActionEvent> {
             g.show();
         }
         if (!Level.getPause()) {
-            if (gameCounter % 90 == 0 && GameLoop.currWave.hasNext()) {
+            if (gameCounter % 160 == 0 && GameLoop.currWave.hasNext()) {
                 GameLoop.currWave.deployNext();
             } else if (currWave.endWave() && !waves.isEmpty()) {
                 currWave = waves.poll();
@@ -64,12 +64,11 @@ public class GameLoop implements EventHandler<ActionEvent> {
                 Enemy e = aliveEnemies.get(id);
                 double[] toMove = e.move();
                 ImageView icon = e.getIcon();
-                //System.out.println(toMove[1]);
                 icon.setLayoutX(toMove[1]);
                 icon.setLayoutY(toMove[0]);
             }
             for (Tower t : activeTowers) {
-                if (gameCounter % (60 / t.getFireRate()) == 0) {
+                if (gameCounter % (120 / t.getFireRate()) == 0) {
                     if (t.targeting()) {
                         Projectile p = t.fire();
                         allProjectiles.put(pID, p);
@@ -91,7 +90,7 @@ public class GameLoop implements EventHandler<ActionEvent> {
             }
         }
         Timeline timer = new Timeline();
-        timer.getKeyFrames().add(new KeyFrame(Duration.millis(16.6), e -> {
+        timer.getKeyFrames().add(new KeyFrame(Duration.millis(8.3), e -> {
             if (!Level.getPause()) {
                 GameLoop.gameCounter++;
             }

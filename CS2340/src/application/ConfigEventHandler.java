@@ -76,7 +76,9 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
                             + "v...........>>v"
                             + "oo............v"
                             + "oo<<<<<<<<<<<<<";
-        EnemyType[][] levelWaves1 = {{EnemyType.MEDIUM}};
+        EnemyType[][] levelWaves1 = {{EnemyType.MEDIUM, 
+                EnemyType.MEDIUM, EnemyType.MEDIUM, EnemyType.MEDIUM}, {EnemyType.HEAVY, 
+                EnemyType.LIGHT, EnemyType.LIGHT, EnemyType.HEAVY}};
         currLevel = new Level(levelLayout1, diff, levelWaves1, 15, 15, primaryStage, 1500, 1200);
         currLevel.generateLevel();
         currLevel.makeWaves(movingSprites);
