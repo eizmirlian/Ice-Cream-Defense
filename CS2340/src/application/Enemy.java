@@ -74,6 +74,10 @@ public abstract class Enemy {
     public int getHealth() {
         return this.health;
     }
+
+    public double getSpeed() {
+        return this.speed;
+    }
     
     public void takeOnlyDamage(int damage) {
         this.health -= damage;
