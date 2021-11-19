@@ -15,8 +15,8 @@ public class WaffleConeLauncher extends Tower {
     
     @Override
     public Projectile fire() {
-        ImageView pIcon = new ImageView();
-        return super.fire(pIcon, 10, super.fitWidth / 2, super.fitHeight / 2);
+        ImageView pIcon = new ImageView(new Image("file:src/waffleConeRocket.png"));
+        return super.fire(pIcon, 5, super.fitWidth / 2, super.fitHeight / 2);
     }
     
     @Override

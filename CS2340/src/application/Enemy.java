@@ -1,5 +1,6 @@
 package application;
 
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
 public abstract class Enemy {
@@ -65,8 +66,8 @@ public abstract class Enemy {
     }
     
     public void die() {
-        GameLoop.getCurrWave().enemyDead(this.id);
         this.getIcon().setVisible(false);
+        GameLoop.getCurrWave().enemyDead(this.id);
         this.curr.leave();
         this.giveMoney();
     }
@@ -81,6 +82,12 @@ public abstract class Enemy {
     
     public void takeDamage(int damage) {
         health -= damage;
+        ColorAdjust monochrome = new ColorAdjust();
+        //monochrome.setSaturation(-1.0);
+        monochrome.setHue(.5);
+        
+        ImageView icon = this.getIcon();
+        icon.setEffect(monochrome);
         checkHealth();
     }
     

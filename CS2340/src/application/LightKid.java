@@ -8,7 +8,7 @@ private ImageView icon;
     public LightKid(Path entry, boolean f) {
         super(50, 5.0, entry);
         if (f) {
-            icon = new ImageView("file:src/enemyNormKid.png");
+            icon = new ImageView("file:src/enemyLightKid.png");
             icon.setManaged(false);
             icon.setLayoutX(super.getPos()[1]);
             icon.setLayoutY(super.getPos()[0]);
