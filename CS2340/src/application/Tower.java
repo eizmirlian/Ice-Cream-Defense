@@ -129,4 +129,8 @@ public class Tower {
     public boolean targeting() {
         return this.targeted != null;
     }
+    
+    public int getDamage() {
+    	return this.damage;
+    }
 }

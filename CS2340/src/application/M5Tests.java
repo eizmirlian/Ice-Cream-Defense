@@ -63,7 +63,7 @@ public class M5Tests {
 		WaffleConeLauncher t2 = new WaffleConeLauncher(d1);
 		assertEquals(t1.getPrice(), 170);
 		assertEquals(t1.getDamage(), 10);
-		assertEquals(t1.getFireRate(), 5);
+		assertEquals(t1.getFireRate(), 8);
 
 		assertEquals(t2.getPrice(), 150);
 		assertEquals(t2.getDamage(), 100);
@@ -84,8 +84,8 @@ public class M5Tests {
 		p1.setLastTile(true);
 		NormKid enemy1 = new NormKid(p1, false);
 		NormKid enemy2 = new NormKid(p1, false);
-		enemy1.takeDamage(10);
-		enemy2.takeDamage(20);
+		enemy1.takeOnlyDamage(10);
+		enemy2.takeOnlyDamage(20);
 		assertEquals(enemy1.getHealth(), 90);
 		assertEquals(enemy2.getHealth(), 80);
 	}
