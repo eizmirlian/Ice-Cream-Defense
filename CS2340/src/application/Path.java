@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 public class Path {
     
     private int[] pos = new int[2];
@@ -8,6 +10,7 @@ public class Path {
     private boolean steppedOn;
     private Enemy enemy;
     private boolean lastTile;
+    private ArrayList<Tower> inRange = new ArrayList<Tower>();
     
     public Path(int row, int column, int nextRow, int nextColumn) {
         this.pos[0] = row;
@@ -37,12 +40,18 @@ public class Path {
     
     public void enter(Enemy e) {
         steppedOn = true;
-        enemy = e;
+        this.enemy = e;
+        for (Tower t : inRange) {
+            t.addEnemy(e);
+        }
     }
     
     public void leave() {
         steppedOn = false;
-        enemy = null;
+        for (Tower t : inRange) {
+            t.removeEnemy(this.enemy);
+        }
+        this.enemy = null;
     }
     public boolean check() {
         return steppedOn;
@@ -58,5 +67,9 @@ public class Path {
     
     public boolean getLastTile() {
         return this.lastTile;
+    }
+    
+    public void addTower(Tower t) {
+        this.inRange.add(t);
     }
 }

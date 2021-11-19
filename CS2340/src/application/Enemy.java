@@ -12,9 +12,28 @@ public abstract class Enemy {
     private static int unitWidth;
     private static int unitHeight;
     
-    public Enemy(int health, double speed) {
+    public Enemy(int health, double speed, Path entry) {
         this.health = health;
         this.speed = speed;
+        if (entry.getPos()[0] == 0) {
+            pos[0] = (entry.getPos()[0] - 1) * unitHeight;
+        } else if (entry.getPos()[0] == (Level.getScreenHeight() / unitHeight - 1)) {
+            pos[0] = (entry.getPos()[0] + 1.5) * unitHeight;
+        } else {
+            pos[0] = entry.getPos()[0] * unitHeight;
+        }
+        if (entry.getPos()[1] == 0) {
+            pos[1] = (entry.getPos()[1] - 1) * unitWidth;
+        } else if (entry.getPos()[1] == (Level.getScreenWidth() / unitWidth - 1)) {
+            pos[1] = (entry.getPos()[1] + 1.5) * unitWidth;
+        } else {
+            pos[1] = entry.getPos()[1] * unitWidth;
+        }
+        this.setPos(pos);
+        Path preEntry = new Path(entry.getPos()[0], entry.getPos()[1], 
+                entry.getPos()[0], entry.getPos()[1]);
+        preEntry.setNext(entry);
+       curr = preEntry;
     }
     
     public double[] move() {
@@ -24,20 +43,23 @@ public abstract class Enemy {
                 * speed / GameLoop.getfps();
         pos[0] = pos[0] + diffY;
         pos[1] = pos[1] + diffX;
-        boolean arrivedY = pos[0] >= curr.getNextPos()[0] * Enemy.unitHeight 
+        boolean arrivedY = pos[0] >= curr.getNextPos()[0] * Enemy.unitHeight
                 && pos[0] + unitHeight
                 <= (curr.getNextPos()[0] + 1) * Enemy.unitHeight;
-        boolean arrivedX = pos[1] >= curr.getNextPos()[1] * Enemy.unitWidth 
+        boolean arrivedX = pos[1] >= curr.getNextPos()[1] * Enemy.unitWidth
                 && pos[1] + unitWidth
                 <= (curr.getNextPos()[1] + 1) * Enemy.unitWidth;
         if (arrivedX && arrivedY) {
+            System.out.println("arrived");
             if (this.curr.getLastTile()) {
                 ConfigEventHandler.getTruck().takeDamage(health);
                 this.die();
             } else {
+                this.curr.leave();
                 prevPos[0] = pos[0];
                 prevPos[1] = pos[1];
                 this.curr = curr.getNext();
+                this.curr.enter(this);
             }
         }
         return this.pos;
@@ -46,6 +68,7 @@ public abstract class Enemy {
     public void die() {
         GameLoop.getCurrWave().enemyDead(this.id);
         this.getIcon().setVisible(false);
+        this.curr.leave();
     }
     
     public boolean checkHealth() {

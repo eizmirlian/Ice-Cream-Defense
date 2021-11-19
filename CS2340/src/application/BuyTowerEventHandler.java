@@ -29,7 +29,8 @@ public class BuyTowerEventHandler implements EventHandler<ActionEvent> {
             this.primaryStage.setScene(ConfigEventHandler.getScene());
             this.location.buyTower(toBuy);
             this.location.getButton().setGraphic(toBuy.getIcon());
-            Level.setPause(false);
+            this.toBuy.checkRange();
+            Level.addTower(toBuy);
         } else {
             error.setVisible(true);
         }

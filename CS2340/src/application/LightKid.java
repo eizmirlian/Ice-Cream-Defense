@@ -2,12 +2,11 @@ package application;
 
 import javafx.scene.image.ImageView;
 
-public class NormKid extends Enemy {
+public class LightKid extends Enemy {
+private ImageView icon;
     
-    private ImageView icon;
-    
-    public NormKid(Path entry, boolean f) {
-        super(100, 3.0, entry);
+    public LightKid(Path entry, boolean f) {
+        super(50, 5.0, entry);
         if (f) {
             icon = new ImageView("file:src/enemyNormKid.png");
             icon.setManaged(false);
