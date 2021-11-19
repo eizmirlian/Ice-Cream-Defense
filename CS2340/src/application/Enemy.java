@@ -43,14 +43,13 @@ public abstract class Enemy {
                 * speed / GameLoop.getfps();
         pos[0] = pos[0] + diffY;
         pos[1] = pos[1] + diffX;
-        boolean arrivedY = pos[0] >= curr.getNextPos()[0] * Enemy.unitHeight
-                && pos[0] + unitHeight
+        boolean arrivedY = pos[0] + 5 >= curr.getNextPos()[0] * Enemy.unitHeight
+                && pos[0] + unitHeight - 5
                 <= (curr.getNextPos()[0] + 1) * Enemy.unitHeight;
-        boolean arrivedX = pos[1] >= curr.getNextPos()[1] * Enemy.unitWidth
-                && pos[1] + unitWidth
+        boolean arrivedX = pos[1] + 5 >= curr.getNextPos()[1] * Enemy.unitWidth
+                && pos[1] + unitWidth - 5
                 <= (curr.getNextPos()[1] + 1) * Enemy.unitWidth;
         if (arrivedX && arrivedY) {
-            System.out.println("arrived");
             if (this.curr.getLastTile()) {
                 ConfigEventHandler.getTruck().takeDamage(health);
                 this.die();
@@ -69,6 +68,7 @@ public abstract class Enemy {
         GameLoop.getCurrWave().enemyDead(this.id);
         this.getIcon().setVisible(false);
         this.curr.leave();
+        this.giveMoney();
     }
     
     public boolean checkHealth() {
@@ -103,10 +103,6 @@ public abstract class Enemy {
     public int getHealth() {
         return this.health;
     }
-
-    public double getSpeed() {
-        return this.speed;
-    }
     
     public void takeOnlyDamage(int damage) {
         this.health -= damage;
@@ -140,4 +136,6 @@ public abstract class Enemy {
     }
 
     public abstract ImageView getIcon();
+    
+    public abstract void giveMoney();
 }

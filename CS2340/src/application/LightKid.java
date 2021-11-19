@@ -23,5 +23,11 @@ private ImageView icon;
     public ImageView getIcon() {
         return icon;
     }
+
+
+    @Override
+    public void giveMoney() {
+        ConfigEventHandler.getTruck().gainMoney(10);
+    }
     
 }

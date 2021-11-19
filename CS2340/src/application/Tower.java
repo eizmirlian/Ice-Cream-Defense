@@ -24,7 +24,7 @@ public class Tower {
     private Enemy targeted;
     
     public Tower(Difficulty diff, String description, int price, int range,
-            int damage, int fireRate) {
+            int damage, double fireRate) {
         this.diff = diff;
         this.description = description;
         this.price = price;
