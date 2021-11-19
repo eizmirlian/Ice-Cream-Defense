@@ -10,21 +10,15 @@ public class WaffleConeLauncher extends Tower {
     private ImageView icon;
     
     public WaffleConeLauncher(Difficulty diff) {
-        super(diff, description, 150, 0, 0, 0);
+        super(diff, description, 150, 2, 100, .5);
     }
     
     @Override
-    public void fire() {
-        // TODO Auto-generated method stub
-
+    public Projectile fire() {
+        ImageView pIcon = new ImageView();
+        return super.fire(pIcon, 10, super.fitWidth / 2, super.fitHeight / 2);
     }
-
-    @Override
-    public void checkRange() {
-        // TODO Auto-generated method stub
-
-    }
-
+    
     @Override
     public void upgrade() {
         // TODO Auto-generated method stub

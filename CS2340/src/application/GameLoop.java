@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Queue;
 //import java.util.Set;    //Checkstyle said this import wasn't used
@@ -19,11 +20,13 @@ public class GameLoop implements EventHandler<ActionEvent> {
     
     private static long gameCounter = 0;
     private static double gameSpeed = 1;
-    private static double fps = 60;
+    private static double fps = 120;
     private Queue<EnemyWave> waves;
     private static EnemyWave currWave;
     private boolean gameOver = false;
     private Level l;
+    private int pID = 0;
+    private HashMap<Integer, Projectile> allProjectiles = Level.getAllProjectiles();
     
     public GameLoop(Level l) {
         this.l = l;
@@ -35,11 +38,14 @@ public class GameLoop implements EventHandler<ActionEvent> {
         return fps;
     }
     
+    @SuppressWarnings("unchecked")
     @Override
     public void handle(ActionEvent arg0) {
         
         HashMap<Integer, Enemy> aliveEnemies = (HashMap<Integer, Enemy>) 
                 GameLoop.currWave.getAliveEnemies().clone();
+        ArrayList<Tower> activeTowers = (ArrayList<Tower>) Level.getActiveTowers().clone();
+        
         if (ConfigEventHandler.getTruck().getHealth() <= 0) {
             Level.setPause(true);
             gameOver = true;
@@ -48,9 +54,12 @@ public class GameLoop implements EventHandler<ActionEvent> {
             g.show();
         }
         if (!Level.getPause()) {
-            if (gameCounter % 120 == 0 && GameLoop.currWave.hasNext()) {
+            if (gameCounter % 160 == 0 && GameLoop.currWave.hasNext()) {
                 GameLoop.currWave.deployNext();
+            } else if (currWave.endWave() && !waves.isEmpty()) {
+                currWave = waves.poll();
             }
+            
             for (int id : aliveEnemies.keySet()) {
                 Enemy e = aliveEnemies.get(id);
                 double[] toMove = e.move();
@@ -58,9 +67,30 @@ public class GameLoop implements EventHandler<ActionEvent> {
                 icon.setLayoutX(toMove[1]);
                 icon.setLayoutY(toMove[0]);
             }
+            for (Tower t : activeTowers) {
+                if (gameCounter % (120 / t.getFireRate()) == 0) {
+                    if (t.targeting()) {
+                        Projectile p = t.fire();
+                        allProjectiles.put(pID, p);
+                        pID++;
+                    }
+                }
+            }
+            HashMap<Integer, Projectile> temp = (HashMap<Integer, Projectile>) allProjectiles.clone();
+            for (int id : temp.keySet()) {
+                Projectile p = allProjectiles.get(id);
+                ImageView icon = p.getIcon();
+                if (p.finished()) {
+                    allProjectiles.remove(id);
+                    icon.setVisible(false);
+                }
+                double[] toMove = p.move();
+                icon.setLayoutX(toMove[1]);
+                icon.setLayoutY(toMove[0]);
+            }
         }
         Timeline timer = new Timeline();
-        timer.getKeyFrames().add(new KeyFrame(Duration.millis(16.6), e -> {
+        timer.getKeyFrames().add(new KeyFrame(Duration.millis(8.3), e -> {
             if (!Level.getPause()) {
                 GameLoop.gameCounter++;
             }
@@ -76,4 +106,6 @@ public class GameLoop implements EventHandler<ActionEvent> {
     public static EnemyWave getCurrWave() {
         return GameLoop.currWave;
     }
+    
+    
 }

@@ -23,4 +23,8 @@ public class Grass {
     public Button getButton() {
         return this.clickable;
     }
+    
+    public int[] getPos() {
+        return this.pos;
+    }
 }

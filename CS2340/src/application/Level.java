@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -28,6 +29,8 @@ public class Level extends GridPane {
     private int unitHeight;
     private static boolean pause;
     private boolean started;
+    private static ArrayList<Tower> activeTowers = new ArrayList<Tower>();
+    private static HashMap<Integer, Projectile> allProjectiles = new HashMap<Integer, Projectile>();
     
     public Level(String ascii, Difficulty diff, EnemyType[][] waves, int width,
             int height, Stage primaryStage, int screenWidth, int screenHeight) {
@@ -211,6 +214,7 @@ public class Level extends GridPane {
                 }
             }
         }
+        Tower.allPaths(allPaths);
     }
     
     protected void makeWaves(Group g) {
@@ -240,5 +244,17 @@ public class Level extends GridPane {
     
     public Stage getStage() {
         return this.stage;
+    }
+    
+    public static ArrayList<Tower> getActiveTowers() {
+        return Level.activeTowers;
+    }
+    
+    public static HashMap<Integer, Projectile> getAllProjectiles() {
+        return Level.allProjectiles;
+    }
+    
+    public static void addTower(Tower t) {
+        Level.activeTowers.add(t);
     }
 }
