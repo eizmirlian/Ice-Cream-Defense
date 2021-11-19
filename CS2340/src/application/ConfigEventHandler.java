@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class ConfigEventHandler implements EventHandler<ActionEvent> {
 
@@ -79,13 +81,19 @@ public class ConfigEventHandler implements EventHandler<ActionEvent> {
         EnemyType[][] levelWaves1 = {{EnemyType.MEDIUM, 
                 EnemyType.MEDIUM, EnemyType.MEDIUM}, {EnemyType.HEAVY, 
                 EnemyType.LIGHT, EnemyType.LIGHT}};
-        currLevel = new Level(levelLayout1, diff, levelWaves1, 15, 15, primaryStage, 1500, 1200);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenX = (int)screenSize.getWidth();
+        int screenY = (int)screenSize.getHeight();
+        screenX = screenX - (screenX%150);
+        screenY = screenY - (screenY%150);
+        int testScreenY = (int)((screenY*0.875) - ((screenY*0.875)%150));
+        currLevel = new Level(levelLayout1, diff, levelWaves1, 15, 15, primaryStage, screenX, testScreenY);
         currLevel.generateLevel();
         currLevel.makeWaves(movingSprites);
         base.getChildren().add(currLevel);
         base.getChildren().add(movingSprites);
-        
-        gameScreen = new Scene(base, 1500, 1270);
+
+        gameScreen = new Scene(base, screenX, (int)(screenY * 0.9375));
         
         primaryStage.setScene(gameScreen);
         

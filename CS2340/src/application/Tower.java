@@ -1,8 +1,14 @@
 package application;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javafx.scene.image.ImageView;
 
 public class Tower {
+	
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	
     private String description;
     private Difficulty diff;
     private int price;
@@ -10,17 +16,26 @@ public class Tower {
     private int damage;
     private int fireRate;
     protected int fitWidth = 88;
-    protected int fitHeight = 70;
+    protected int fitHeight = 10;
     private ImageView icon;
     
     public Tower(Difficulty diff, String description, int price, int range,
             int damage, int fireRate) {
+        int screenX = ((int)screenSize.getWidth());
+        int screenY = (int)screenSize.getHeight();
+        int screenXFit = (int)((screenX - (screenX%150))*0.08);
+        int screenYFit = (int)((screenY - (screenY%150))*0.04);
+    	
         this.diff = diff;
         this.description = description;
         this.price = price;
         this.range = range;
         this.damage = damage;
         this.fireRate = fireRate;
+        this.fitWidth = screenXFit;
+        this.fitHeight = screenYFit;
+        
+        
     }
     public void fire() {
         

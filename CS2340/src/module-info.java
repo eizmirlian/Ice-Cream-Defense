@@ -4,6 +4,7 @@ module CS2340 {
   requires org.junit.jupiter.api;
 requires javafx.base;
 requires junit;
+requires java.desktop;
 	
 	opens application to javafx.graphics, javafx.fxml;
 }
