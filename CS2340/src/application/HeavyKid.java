@@ -2,8 +2,8 @@ package application;
 
 import javafx.scene.image.ImageView;
 
-public class HeavyKid extends Enemy {
-    private ImageView icon;
+public class HeavyKid extends Enemy{
+private ImageView icon;
     
     public HeavyKid(Path entry, boolean f) {
         super(300, 1, entry);

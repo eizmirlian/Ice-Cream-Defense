@@ -9,8 +9,10 @@ public class WaffleConeLauncher extends Tower {
             + " at enemies!\nHigh damage output with a low\nrate of fire and medium range.";
     private ImageView icon;
     
+    private String upgradeDesc = "Upgrade this tower to increase its fire rate.";
+    
     public WaffleConeLauncher(Difficulty diff) {
-        super(diff, description, 150, 2, 100, .5);
+        super(diff, description, 150, 2, 100, 1);
     }
     
     @Override
@@ -21,8 +23,8 @@ public class WaffleConeLauncher extends Tower {
     
     @Override
     public void upgrade() {
-        // TODO Auto-generated method stub
-
+        super.setFireRate(1);
+        super.upgrade();
     }
 
     @Override
@@ -39,5 +41,10 @@ public class WaffleConeLauncher extends Tower {
         this.icon.setFitWidth(super.fitWidth);
         this.icon.setFitHeight(super.fitHeight);
         return this.icon;
+    }
+    
+    @Override
+    public String getUpgradeDesc() {
+        return this.upgradeDesc;
     }
 }

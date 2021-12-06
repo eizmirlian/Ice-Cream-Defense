@@ -29,6 +29,9 @@ public class EnemyWave {
             case HEAVY:
                 enemy = new HeavyKid(entryPoints.get(r.nextInt(entryPoints.size())), true);
                 break;
+            case BOSS:
+                enemy = new FinalBoss(entryPoints.get(r.nextInt(entryPoints.size())), true);
+                break;
             default:
                 enemy = new NormKid(entryPoints.get(r.nextInt(entryPoints.size())), true);
             }

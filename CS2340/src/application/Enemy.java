@@ -12,6 +12,7 @@ public abstract class Enemy {
     private int id;
     private static int unitWidth;
     private static int unitHeight;
+    private boolean killed = true;
     
     public Enemy(int health, double speed, Path entry) {
         this.health = health;
@@ -34,7 +35,7 @@ public abstract class Enemy {
         Path preEntry = new Path(entry.getPos()[0], entry.getPos()[1], 
                 entry.getPos()[0], entry.getPos()[1]);
         preEntry.setNext(entry);
-        curr = preEntry;
+       curr = preEntry;
     }
     
     public double[] move() {
@@ -44,15 +45,16 @@ public abstract class Enemy {
                 * speed / GameLoop.getfps();
         pos[0] = pos[0] + diffY;
         pos[1] = pos[1] + diffX;
-        boolean arrivedY = pos[0] + 5 >= curr.getNextPos()[0] * Enemy.unitHeight
-                && pos[0] + unitHeight - 5
+        boolean arrivedY = pos[0] + 10 >= curr.getNextPos()[0] * Enemy.unitHeight
+                && pos[0] + unitHeight - 10
                 <= (curr.getNextPos()[0] + 1) * Enemy.unitHeight;
-        boolean arrivedX = pos[1] + 5 >= curr.getNextPos()[1] * Enemy.unitWidth
-                && pos[1] + unitWidth - 5
+        boolean arrivedX = pos[1] + 10 >= curr.getNextPos()[1] * Enemy.unitWidth
+                && pos[1] + unitWidth - 10
                 <= (curr.getNextPos()[1] + 1) * Enemy.unitWidth;
         if (arrivedX && arrivedY) {
             if (this.curr.getLastTile()) {
                 ConfigEventHandler.getTruck().takeDamage(health);
+                this.killed = false;
                 this.die();
             } else {
                 this.curr.leave();
@@ -69,7 +71,9 @@ public abstract class Enemy {
         this.getIcon().setVisible(false);
         GameLoop.getCurrWave().enemyDead(this.id);
         this.curr.leave();
-        this.giveMoney();
+        if (this.killed) {
+            this.giveMoney();
+        }
     }
     
     public boolean checkHealth() {
@@ -111,6 +115,10 @@ public abstract class Enemy {
         return this.health;
     }
     
+    protected void doubleSpeed() {
+        this.speed = this.speed * 2;
+    }
+    
     public void takeOnlyDamage(int damage) {
         this.health -= damage;
     }
@@ -128,10 +136,6 @@ public abstract class Enemy {
     
     public int getID() {
         return this.id;
-    }
-    
-    public double getSpeed() {
-        return this.speed;
     }
     
     public void setID(int id) {

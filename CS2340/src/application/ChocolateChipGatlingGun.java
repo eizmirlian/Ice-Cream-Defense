@@ -10,8 +10,11 @@ public class ChocolateChipGatlingGun extends Tower {
             + " chocolate chips\nat enemies! Medium damage with"
             + "\na high rate of fire and low range";
     
+    private String upgradeDesc = "Upgrade this tower to make it's fire rate even higher and slightly "
+            + "increase damage."; 
+    
     public ChocolateChipGatlingGun(Difficulty diff) {
-        super(diff, description, 170, 1, 10, 8);
+        super(diff, description, 170, 1, 15, 10);
     }
     
     @Override
@@ -23,8 +26,9 @@ public class ChocolateChipGatlingGun extends Tower {
 
     @Override
     public void upgrade() {
-        // TODO Auto-generated method stub
-
+        super.setFireRate(15);
+        super.setDamage(20);
+        super.upgrade();
     }
 
     @Override
@@ -37,6 +41,11 @@ public class ChocolateChipGatlingGun extends Tower {
         this.icon.setFitWidth(super.fitWidth);
         this.icon.setFitHeight(super.fitHeight);
         return this.icon;
+    }
+    
+    @Override
+    public String getUpgradeDesc() {
+        return this.upgradeDesc;
     }
 
 }
