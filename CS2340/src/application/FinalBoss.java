@@ -2,13 +2,15 @@ package application;
 
 import javafx.scene.image.ImageView;
 
-public class LightKid extends Enemy {
-private ImageView icon;
+public class FinalBoss extends Enemy{
     
-    public LightKid(Path entry, boolean f) {
-        super(50, 5.0, entry);
+    private ImageView icon;
+    private int phase = 1;
+
+    public FinalBoss(Path entry, boolean f) {
+        super(800, 1, entry);
         if (f) {
-            icon = new ImageView("file:src/enemyLightKid.png");
+            icon = new ImageView("file:src/finalBoss.png");
             icon.setManaged(false);
             icon.setLayoutX(super.getPos()[1]);
             icon.setLayoutY(super.getPos()[0]);
@@ -17,17 +19,23 @@ private ImageView icon;
         }
     }
     
-
+    @Override
+    public double[] move() {
+        if (super.getHealth() < (800 - this.phase * 200)) {
+            super.doubleSpeed();
+            this.phase++;
+        }
+        return super.move();
+    }
 
     @Override
     public ImageView getIcon() {
         return icon;
     }
 
-
     @Override
     public void giveMoney() {
-        ConfigEventHandler.getTruck().gainMoney(10);
+       GameLoop.getInstance().win();
     }
-    
+
 }

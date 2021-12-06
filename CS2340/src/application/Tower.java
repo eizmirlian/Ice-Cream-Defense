@@ -1,26 +1,21 @@
 package application;
 
 import java.util.ArrayList;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.util.LinkedList;
 
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 public class Tower {
-    
-
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    
     private String description;
     private Difficulty diff;
     private int price;
     private int range;
     private int damage;
     private double fireRate;
+    private boolean upgraded;
     protected int fitWidth = 88;
-    protected int fitHeight = 10;
+    protected int fitHeight = 70;
     private ImageView icon;
     private Grass location;
     private static Path[][] allPaths;
@@ -31,19 +26,12 @@ public class Tower {
     
     public Tower(Difficulty diff, String description, int price, int range,
             int damage, double fireRate) {
-        
-        int screenX = ((int) screenSize.getWidth());
-        int screenY = (int) screenSize.getHeight();
-        int screenXFit = (int) ((screenX - (screenX % 150)) * 0.08);
-        int screenYFit = (int) ((screenY - (screenY % 150)) * 0.04);
         this.diff = diff;
         this.description = description;
         this.price = price;
         this.range = range;
         this.damage = damage;
         this.fireRate = fireRate;
-        this.fitWidth = screenXFit;
-        this.fitHeight = screenYFit;
     }
     
     public Projectile fire() {
@@ -54,8 +42,7 @@ public class Tower {
         double[] temp = new double[2];
         temp[0] = (location.getPos()[0] + 1) * fitHeight;
         temp[1] = (location.getPos()[1] + 1) * fitWidth;
-        Projectile p = new Projectile(targeted, temp, icon, 
-            projectileSpeed, damage, pFitWidth, pFitHeight);
+        Projectile p = new Projectile(targeted, temp, icon, projectileSpeed, damage, pFitWidth, pFitHeight);
         Tower.g.getChildren().add(icon);
         return p;
         
@@ -71,8 +58,7 @@ public class Tower {
             while (j < effectiveRange) {
                 int xCoord = upperLeftX + i;
                 int yCoord = upperLeftY + j;
-                if (xCoord >= 0 && yCoord >= 0 && xCoord < allPaths[0].length 
-                        && yCoord < allPaths.length) {
+                if (xCoord >= 0 && yCoord >= 0 && xCoord < allPaths[0].length && yCoord < allPaths.length) {
                     Path p = allPaths[upperLeftY + j][upperLeftX + i];
                     if (p != null) {
                         p.addTower(this);
@@ -85,7 +71,7 @@ public class Tower {
         }
     }
     public void upgrade() {
-        
+        this.upgraded = true;
     }
     public void sell() {
         
@@ -145,7 +131,23 @@ public class Tower {
         return this.targeted != null;
     }
     
-    public int getDamage() {
-        return this.damage;
+    public boolean checkUpgrade() {
+        return this.upgraded;
+    }
+    
+    protected void setFireRate(double f) {
+        this.fireRate = f;
+    }
+    
+    protected void setDamage(int d) {
+        this.damage = d;
+    }
+    
+    public int getUpgradePrice() {
+        return this.price * 3 / 4;
+    }
+    
+    public String getUpgradeDesc() {
+        return "";
     }
 }

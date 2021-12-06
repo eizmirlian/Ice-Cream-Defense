@@ -42,10 +42,8 @@ public class Level extends GridPane {
         this.stage = primaryStage;
         Level.screenWidth = screenWidth;
         Level.screenHeight = screenHeight;
-        screenWidth = screenWidth - (screenWidth % 150);
-        screenHeight = screenHeight - (screenHeight % 150);
-        this.unitWidth = Level.screenWidth / width;
-        this.unitHeight = Level.screenHeight / height;
+        this.unitWidth = Level.screenWidth / this.width;
+        this.unitHeight = Level.screenHeight / this.height;
         this.waves = waves;
         Enemy.setUnitHeight(this.unitHeight);
         Enemy.setUnitWidth(this.unitWidth);
@@ -59,8 +57,8 @@ public class Level extends GridPane {
         this.setStyle("-fx-background-color: green");
         Image truckPic = new Image("file:src/truck.png");
         ImageView truck = new ImageView(truckPic);
-        truck.setFitWidth(2 * unitWidth - 15);
-        truck.setFitHeight(2 * unitHeight - 5);
+        truck.setFitWidth(180);
+        truck.setFitHeight(150);
         Button monument = new Button();
         monument.setStyle("-fx-background-color: green");
         Monument iceCreamTruck = ConfigEventHandler.getTruck();
