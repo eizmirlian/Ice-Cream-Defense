@@ -10,7 +10,8 @@ public class ChocolateChipGatlingGun extends Tower {
             + " chocolate chips\nat enemies! Medium damage with"
             + "\na high rate of fire and low range";
     
-    private String upgradeDesc = "Upgrade this tower to make it's fire rate even higher and slightly "
+    private String upgradeDesc = 
+        "Upgrade this tower to make it's fire rate even higher and slightly "
             + "increase damage."; 
     
     public ChocolateChipGatlingGun(Difficulty diff) {

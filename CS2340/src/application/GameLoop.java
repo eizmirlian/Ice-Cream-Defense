@@ -78,7 +78,8 @@ public class GameLoop implements EventHandler<ActionEvent> {
                     }
                 }
             }
-            HashMap<Integer, Projectile> temp = (HashMap<Integer, Projectile>) allProjectiles.clone();
+            HashMap<Integer, Projectile> temp = 
+                (HashMap<Integer, Projectile>) allProjectiles.clone();
             for (int id : temp.keySet()) {
                 Projectile p = allProjectiles.get(id);
                 ImageView icon = p.getIcon();

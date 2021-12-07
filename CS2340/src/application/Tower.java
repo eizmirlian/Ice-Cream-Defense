@@ -42,7 +42,8 @@ public class Tower {
         double[] temp = new double[2];
         temp[0] = (location.getPos()[0] + 1) * fitHeight;
         temp[1] = (location.getPos()[1] + 1) * fitWidth;
-        Projectile p = new Projectile(targeted, temp, icon, projectileSpeed, damage, pFitWidth, pFitHeight);
+        Projectile p = new Projectile(targeted, temp, icon, projectileSpeed, 
+            damage, pFitWidth, pFitHeight);
         Tower.g.getChildren().add(icon);
         return p;
         
@@ -58,7 +59,8 @@ public class Tower {
             while (j < effectiveRange) {
                 int xCoord = upperLeftX + i;
                 int yCoord = upperLeftY + j;
-                if (xCoord >= 0 && yCoord >= 0 && xCoord < allPaths[0].length && yCoord < allPaths.length) {
+                if (xCoord >= 0 && yCoord >= 0 && xCoord < allPaths[0].length 
+                    && yCoord < allPaths.length) {
                     Path p = allPaths[upperLeftY + j][upperLeftX + i];
                     if (p != null) {
                         p.addTower(this);

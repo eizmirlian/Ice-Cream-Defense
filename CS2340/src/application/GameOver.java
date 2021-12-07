@@ -36,20 +36,21 @@ public class GameOver {
             title = new Text("YOU WIN");
             title.setStyle("-fx-fill: green;-fx-font: 48px Stencil;");
             prompts = new VBox();
-            consolation = new Text("Congrats! You defended your ice cream truck until it was working again!\n"
+            consolation = new Text("Congrats! You defended your ice cream " 
+                    + "truck until it was working again!\n"
                     + "You can play again or quit!");
             consolation.setStyle("-fx-fill: yellow;-fx-font: 36px Impact;");
             consolation.setTextAlignment(TextAlignment.CENTER);
         } else {
             gameOverPane.setStyle("-fx-background-color: "
                     + "linear-gradient(from 40% 25% to 100% 100%, black, red)");
-                title = new Text("GAME OVER");
-                title.setStyle("-fx-fill: red;-fx-font: 48px Stencil;");
-                prompts = new VBox();
-                consolation = new Text("The kids got your ice cream, but you'll get em next time!\n"
+            title = new Text("GAME OVER");
+            title.setStyle("-fx-fill: red;-fx-font: 48px Stencil;");
+            prompts = new VBox();
+            consolation = new Text("The kids got your ice cream, but you'll get em next time!\n"
                         + "You can quit here, or go back for revenge!");
-                consolation.setStyle("-fx-fill: orange;-fx-font: 36px Impact;");
-                consolation.setTextAlignment(TextAlignment.CENTER);
+            consolation.setStyle("-fx-fill: orange;-fx-font: 36px Impact;");
+            consolation.setTextAlignment(TextAlignment.CENTER);
         }
         
         

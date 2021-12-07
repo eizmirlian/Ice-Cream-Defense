@@ -129,7 +129,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             
         } else {
             buildTitle.setText("Upgrade Menu");
-            UpgradeHandler uH = new UpgradeHandler(primaryStage, towerMenu, grass.getTower(), errorMessage);
+            UpgradeHandler uH = new UpgradeHandler(primaryStage, towerMenu, 
+                grass.getTower(), errorMessage);
             uH.build();
         }
         

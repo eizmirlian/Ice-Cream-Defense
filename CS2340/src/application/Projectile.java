@@ -13,7 +13,8 @@ public class Projectile {
     private int fitHeight;
     private int fitWidth;
     
-    public Projectile(Enemy target, double[] pos, ImageView icon, int projectileSpeed, int damage, int fitWidth, int fitHeight) {
+    public Projectile(Enemy target, double[] pos, ImageView icon, int projectileSpeed, 
+        int damage, int fitWidth, int fitHeight) {
         this.target = target;
         this.pos[0] = pos[0];
         this.pos[1] = pos[1];

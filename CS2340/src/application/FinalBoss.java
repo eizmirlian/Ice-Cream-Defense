@@ -2,7 +2,7 @@ package application;
 
 import javafx.scene.image.ImageView;
 
-public class FinalBoss extends Enemy{
+public class FinalBoss extends Enemy {
     
     private ImageView icon;
     private int phase = 1;
@@ -35,7 +35,7 @@ public class FinalBoss extends Enemy{
 
     @Override
     public void giveMoney() {
-       GameLoop.getInstance().win();
+        GameLoop.getInstance().win();
     }
 
 }
