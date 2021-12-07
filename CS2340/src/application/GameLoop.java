@@ -27,11 +27,13 @@ public class GameLoop implements EventHandler<ActionEvent> {
     private Level l;
     private int pID = 0;
     private HashMap<Integer, Projectile> allProjectiles = Level.getAllProjectiles();
+    private static GameLoop instance;
     
     public GameLoop(Level l) {
         this.l = l;
         this.waves = l.getWaves();
         GameLoop.currWave = waves.poll();
+        instance = this;
     }
     
     public static double getfps() {
@@ -51,7 +53,7 @@ public class GameLoop implements EventHandler<ActionEvent> {
             gameOver = true;
             GameOver g = new GameOver(l.getStage(), Level.getScreenWidth(), 
                     Level.getScreenHeight());
-            g.show();
+            g.show(false);
         }
         if (!Level.getPause()) {
             if (gameCounter % 90 == 0 && GameLoop.currWave.hasNext()) {
@@ -64,7 +66,6 @@ public class GameLoop implements EventHandler<ActionEvent> {
                 Enemy e = aliveEnemies.get(id);
                 double[] toMove = e.move();
                 ImageView icon = e.getIcon();
-                //System.out.println(toMove[1]);
                 icon.setLayoutX(toMove[1]);
                 icon.setLayoutY(toMove[0]);
             }
@@ -77,7 +78,8 @@ public class GameLoop implements EventHandler<ActionEvent> {
                     }
                 }
             }
-            HashMap<Integer, Projectile> temp = (HashMap<Integer, Projectile>) allProjectiles.clone();
+            HashMap<Integer, Projectile> temp = 
+                (HashMap<Integer, Projectile>) allProjectiles.clone();
             for (int id : temp.keySet()) {
                 Projectile p = allProjectiles.get(id);
                 ImageView icon = p.getIcon();
@@ -108,5 +110,13 @@ public class GameLoop implements EventHandler<ActionEvent> {
         return GameLoop.currWave;
     }
     
+    public void win() {
+        GameOver g = new GameOver(l.getStage(), Level.getScreenWidth(), 
+                Level.getScreenHeight());
+        g.show(true);
+    }
     
+    public static GameLoop getInstance() {
+        return GameLoop.instance;
+    }
 }

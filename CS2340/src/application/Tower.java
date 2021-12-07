@@ -13,6 +13,7 @@ public class Tower {
     private int range;
     private int damage;
     private double fireRate;
+    private boolean upgraded;
     protected int fitWidth = 88;
     protected int fitHeight = 70;
     private ImageView icon;
@@ -24,7 +25,7 @@ public class Tower {
     private Enemy targeted;
     
     public Tower(Difficulty diff, String description, int price, int range,
-            int damage, int fireRate) {
+            int damage, double fireRate) {
         this.diff = diff;
         this.description = description;
         this.price = price;
@@ -39,9 +40,10 @@ public class Tower {
     
     public Projectile fire(ImageView icon, int projectileSpeed, int pFitWidth, int pFitHeight) {
         double[] temp = new double[2];
-        temp[0] = (location.getPos()[0] + .5) * fitHeight;
-        temp[1] = (location.getPos()[1] + .5) * fitWidth;
-        Projectile p = new Projectile(targeted, temp, icon, projectileSpeed, damage, pFitWidth, pFitHeight);
+        temp[0] = (location.getPos()[0] + 1) * fitHeight;
+        temp[1] = (location.getPos()[1] + 1) * fitWidth;
+        Projectile p = new Projectile(targeted, temp, icon, projectileSpeed, 
+            damage, pFitWidth, pFitHeight);
         Tower.g.getChildren().add(icon);
         return p;
         
@@ -57,7 +59,8 @@ public class Tower {
             while (j < effectiveRange) {
                 int xCoord = upperLeftX + i;
                 int yCoord = upperLeftY + j;
-                if (xCoord >= 0 && yCoord >= 0 && xCoord < allPaths[0].length && yCoord < allPaths.length) {
+                if (xCoord >= 0 && yCoord >= 0 && xCoord < allPaths[0].length 
+                    && yCoord < allPaths.length) {
                     Path p = allPaths[upperLeftY + j][upperLeftX + i];
                     if (p != null) {
                         p.addTower(this);
@@ -70,8 +73,9 @@ public class Tower {
         }
     }
     public void upgrade() {
-        
+        this.upgraded = true;
     }
+
     public void sell() {
         
     }
@@ -128,5 +132,29 @@ public class Tower {
     
     public boolean targeting() {
         return this.targeted != null;
+    }
+    
+    public boolean checkUpgrade() {
+        return this.upgraded;
+    }
+
+    public int getOnlyDamageOfTower() {
+        return this.damage;
+    }
+    
+    protected void setFireRate(double f) {
+        this.fireRate = f;
+    }
+    
+    protected void setDamage(int d) {
+        this.damage = d;
+    }
+    
+    public int getUpgradePrice() {
+        return this.price * 3 / 4;
+    }
+    
+    public String getUpgradeDesc() {
+        return "";
     }
 }

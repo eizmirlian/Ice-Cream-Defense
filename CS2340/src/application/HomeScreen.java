@@ -24,7 +24,7 @@ public class HomeScreen extends Application {
         homeRoot.setPadding(new Insets(50));
         homeRoot.setStyle("-fx-background-color: "
             + "linear-gradient(from 25% 25% to 100% 100%, black, blue)");
-        Text title = new Text("BEEJ'S TOWER DEFENSE");
+        Text title = new Text("ICE SCREAM TOWER DEFENSE");
         title.setStyle("-fx-fill: white;-fx-font: 48px Stencil;");
         Button start = new Button("Start");
         start.setStyle(

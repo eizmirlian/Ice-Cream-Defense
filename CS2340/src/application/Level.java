@@ -249,7 +249,6 @@ public class Level extends GridPane {
     }
     
     public static void addTower(Tower t) {
-        System.out.println("added");
         Level.activeTowers.add(t);
     }
 }

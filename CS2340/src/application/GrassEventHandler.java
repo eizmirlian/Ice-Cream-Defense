@@ -37,6 +37,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
         towers.setAlignment(Pos.CENTER);
         towers.setPadding(new Insets(100));
         towers.setSpacing(80);
+        Scene buildMenu = new Scene(towerMenu, Level.getScreenWidth(), Level.getScreenHeight());
         
         
         HBox others = new HBox();
@@ -128,8 +129,11 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             
         } else {
             buildTitle.setText("Upgrade Menu");
+            UpgradeHandler uH = new UpgradeHandler(primaryStage, towerMenu, 
+                grass.getTower(), errorMessage);
+            uH.build();
         }
-        Scene buildMenu = new Scene(towerMenu, Level.getScreenWidth(), Level.getScreenHeight());
+        
         primaryStage.setScene(buildMenu);
     }
 

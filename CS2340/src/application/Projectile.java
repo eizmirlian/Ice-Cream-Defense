@@ -13,7 +13,8 @@ public class Projectile {
     private int fitHeight;
     private int fitWidth;
     
-    public Projectile(Enemy target, double[] pos, ImageView icon, int projectileSpeed, int damage, int fitWidth, int fitHeight) {
+    public Projectile(Enemy target, double[] pos, ImageView icon, int projectileSpeed, 
+        int damage, int fitWidth, int fitHeight) {
         this.target = target;
         this.pos[0] = pos[0];
         this.pos[1] = pos[1];
@@ -41,7 +42,7 @@ public class Projectile {
                 && pos[0] <= target.getPos()[0] + target.getIcon().getFitHeight();
         boolean arrivedX = pos[1] + fitWidth >= target.getPos()[1]  
                 && pos[1] <= target.getPos()[1] + target.getIcon().getFitWidth();
-        if (arrivedX && arrivedY) {
+        if (arrivedX && arrivedY && !hit) {
             this.hit = true;
             target.takeDamage(this.damage);
         }
