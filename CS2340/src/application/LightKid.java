@@ -18,7 +18,6 @@ public class LightKid extends Enemy {
     }
     
 
-
     @Override
     public ImageView getIcon() {
         return icon;
