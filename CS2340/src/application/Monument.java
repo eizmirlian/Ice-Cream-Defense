@@ -5,6 +5,9 @@ public class Monument {
     private int health;
     private double money;
     private boolean displaying = true;
+    private int enemiesKilled = 0;
+    private int moneyEarned = 0;
+    private int damageTaken = 0;
     
     public Monument(int health, int money) {
         this.health = health;
@@ -18,11 +21,14 @@ public class Monument {
 
     public void gainMoney(double money) {
         this.money += money;
+        this.moneyEarned += money;
+        this.enemiesKilled++;
         this.updateLevelText();
     }
     
     public void takeDamage(int dmg) {
         this.health -= dmg;
+        this.damageTaken += dmg;
         this.updateLevelText();
     }
     
@@ -48,5 +54,17 @@ public class Monument {
     
     private void updateLevelText() {
         Level.getInstance().updateText();
+    }
+    
+    public int getEnemiesKilled() {
+        return this.enemiesKilled;
+    }
+    
+    public int getMoneyEarned() {
+        return this.moneyEarned;
+    }
+    
+    public int getDamageTaken() {
+        return this.damageTaken;
     }
 }
