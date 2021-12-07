@@ -75,6 +75,7 @@ public class Tower {
     public void upgrade() {
         this.upgraded = true;
     }
+
     public void sell() {
         
     }
@@ -135,6 +136,10 @@ public class Tower {
     
     public boolean checkUpgrade() {
         return this.upgraded;
+    }
+
+    public int getOnlyDamageOfTower() {
+        return this.damage;
     }
     
     protected void setFireRate(double f) {

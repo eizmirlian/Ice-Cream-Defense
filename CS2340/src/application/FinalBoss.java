@@ -38,4 +38,8 @@ public class FinalBoss extends Enemy {
         GameLoop.getInstance().win();
     }
 
+    public boolean goToWinScreen() {
+        return this.health <= 0;
+    }
+
 }
