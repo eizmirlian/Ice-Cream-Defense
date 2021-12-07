@@ -85,5 +85,19 @@ public class M6Tests {
         assertEquals(finBoss.goToWinScreen(), true);
 
     }
+
+    @Test
+    public void brandonFinalBossConstructorTest() {
+        Path path = new Path(0, 0, 0, 0);
+        path.setLastTile(true);
+        FinalBoss finBoss = new FinalBoss(path, false);
+        assertEquals(true, true);
+    }
+
+    @Test
+    public void brandonPathConstructorTest() {
+        Path p1 = new Path(0, 0, 0, 0);
+        assertEquals(true, true);
+    }
 	
 }
