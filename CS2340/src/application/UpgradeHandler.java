@@ -13,13 +13,15 @@ public class UpgradeHandler {
     private Tower curr;
     private Stage primaryStage;
     private Text error;
+    private boolean prevPause;
     
     public UpgradeHandler(Stage primaryStage, BorderPane menu, Tower curr,
-            Text error) {
+            Text error, boolean prevPause) {
         this.primaryStage = primaryStage;
         this.upgradeMenu = menu;
         this.curr = curr;
         this.error = error;
+        this.prevPause = prevPause;
     }
     
     public void build() {
@@ -60,6 +62,7 @@ public class UpgradeHandler {
             truck.buy(curr.getUpgradePrice());
             curr.upgrade();
             this.primaryStage.setScene(ConfigEventHandler.getScene());
+            Level.setPause(prevPause);
         } else {
             error.setVisible(true);
         }

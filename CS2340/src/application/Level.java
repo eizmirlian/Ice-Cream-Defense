@@ -31,6 +31,9 @@ public class Level extends GridPane {
     private boolean started;
     private static ArrayList<Tower> activeTowers = new ArrayList<Tower>();
     private static HashMap<Integer, Projectile> allProjectiles = new HashMap<Integer, Projectile>();
+    private Button monument;
+    private Monument iceCreamTruck;
+    private static Level instance;
     
     public Level(String ascii, Difficulty diff, EnemyType[][] waves, int width,
             int height, Stage primaryStage, int screenWidth, int screenHeight) {
@@ -49,6 +52,7 @@ public class Level extends GridPane {
         Enemy.setUnitWidth(this.unitWidth);
         Level.pause = true;
         this.started = false;
+        Level.instance = this;
     }
     
     public void generateLevel() {
@@ -59,9 +63,9 @@ public class Level extends GridPane {
         ImageView truck = new ImageView(truckPic);
         truck.setFitWidth(180);
         truck.setFitHeight(150);
-        Button monument = new Button();
+        monument = new Button();
         monument.setStyle("-fx-background-color: green");
-        Monument iceCreamTruck = ConfigEventHandler.getTruck();
+        iceCreamTruck = ConfigEventHandler.getTruck();
         monument.setGraphic(truck);
         monument.setOnAction(e -> {
             if (iceCreamTruck.getDisplay()) {
@@ -250,5 +254,19 @@ public class Level extends GridPane {
     
     public static void addTower(Tower t) {
         Level.activeTowers.add(t);
+    }
+    
+    public static Level getInstance() {
+        return Level.instance;
+    }
+    
+    public void updateText() {
+        if (!iceCreamTruck.getDisplay()) {
+            monument.setText("Money: " + Double.toString(iceCreamTruck.getMoney())
+                + "\nHealth: " + Integer.toString(iceCreamTruck.getHealth()));
+            monument.setStyle("-fx-background-color: gray;-fx-text-fill: yellow;"
+                + "-fx-font: 24px Stencil;-fx-background-radius: 0");
+            iceCreamTruck.setDisplay(false);
+        }
     }
 }

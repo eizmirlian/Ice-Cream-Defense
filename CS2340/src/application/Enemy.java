@@ -45,11 +45,11 @@ public abstract class Enemy {
                 * speed / GameLoop.getfps();
         pos[0] = pos[0] + diffY;
         pos[1] = pos[1] + diffX;
-        boolean arrivedY = pos[0] + 10 >= curr.getNextPos()[0] * Enemy.unitHeight
-                && pos[0] + unitHeight - 10
+        boolean arrivedY = pos[0] + 15 >= curr.getNextPos()[0] * Enemy.unitHeight
+                && pos[0] + unitHeight - 15
                 <= (curr.getNextPos()[0] + 1) * Enemy.unitHeight;
-        boolean arrivedX = pos[1] + 10 >= curr.getNextPos()[1] * Enemy.unitWidth
-                && pos[1] + unitWidth - 10
+        boolean arrivedX = pos[1] + 15 >= curr.getNextPos()[1] * Enemy.unitWidth
+                && pos[1] + unitWidth - 15
                 <= (curr.getNextPos()[1] + 1) * Enemy.unitWidth;
         if (arrivedX && arrivedY) {
             if (this.curr.getLastTile()) {
@@ -140,6 +140,10 @@ public abstract class Enemy {
     
     public void setID(int id) {
         this.id = id;
+    }
+    
+    public boolean isKilled() {
+        return this.killed;
     }
     
     public static void setUnitWidth(int unitWidth) {

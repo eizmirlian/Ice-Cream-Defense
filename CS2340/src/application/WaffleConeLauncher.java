@@ -12,7 +12,7 @@ public class WaffleConeLauncher extends Tower {
     private String upgradeDesc = "Upgrade this tower to increase its fire rate.";
     
     public WaffleConeLauncher(Difficulty diff) {
-        super(diff, description, 150, 2, 100, 1);
+        super(diff, description, 150, 2, 100, 1.5);
     }
     
     @Override
@@ -23,7 +23,7 @@ public class WaffleConeLauncher extends Tower {
     
     @Override
     public void upgrade() {
-        super.setFireRate(1);
+        super.setFireRate(2);
         super.upgrade();
     }
 

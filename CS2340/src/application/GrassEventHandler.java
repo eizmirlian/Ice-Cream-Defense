@@ -26,6 +26,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
     
     @Override
     public void handle(ActionEvent arg0) {
+        boolean prevPause = Level.getPause();
+        Level.setPause(true);
         BorderPane towerMenu = new BorderPane();
         towerMenu.setPadding(new Insets(50));
         towerMenu.setStyle("-fx-background-color: gray");
@@ -49,6 +51,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
                 + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 24px Impact");
         exit.setOnAction(e -> {
             this.primaryStage.setScene(ConfigEventHandler.getScene());
+            Level.setPause(prevPause);
         });
         Text errorMessage = new Text("You don't have enough money to buy that");
         errorMessage.setStyle("-fx-font: 24px Palatino; -fx-fill: red;-fx-font-weight: bold");
@@ -78,7 +81,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             buy1.setStyle("-fx-background-color: green;"
                     + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 36px Impact");
             buy1.setOnAction(new BuyTowerEventHandler(v, this.grass, this.primaryStage,
-                    ConfigEventHandler.getTruck(), errorMessage));
+                    ConfigEventHandler.getTruck(), errorMessage, prevPause));
             towerOptions1.getChildren().addAll(vanillaCatapult, towerTitle1, price1, desc1, buy1);
             towerOptions1.setSpacing(50);
             
@@ -98,7 +101,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             buy2.setStyle("-fx-background-color: green;"
                     + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 36px Impact");
             buy2.setOnAction(new BuyTowerEventHandler(w, this.grass, this.primaryStage,
-                    ConfigEventHandler.getTruck(), errorMessage));
+                    ConfigEventHandler.getTruck(), errorMessage, prevPause));
             towerOptions2.getChildren().addAll(waffleConeLauncher, towerTitle2, price2, desc2,
                     buy2);
             towerOptions2.setSpacing(50);
@@ -119,7 +122,7 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             buy3.setStyle("-fx-background-color: green;"
                     + "-fx-text-fill: white;-fx-background-radius: 10;-fx-font: 36px Impact");
             buy3.setOnAction(new BuyTowerEventHandler(c, this.grass, this.primaryStage,
-                    ConfigEventHandler.getTruck(), errorMessage));
+                    ConfigEventHandler.getTruck(), errorMessage, prevPause));
             towerOptions3.getChildren().addAll(chocChipGatlingGun, towerTitle3, price3,
                     desc3, buy3);
             towerOptions3.setSpacing(50);
@@ -129,8 +132,8 @@ public class GrassEventHandler implements EventHandler<ActionEvent> {
             
         } else {
             buildTitle.setText("Upgrade Menu");
-            UpgradeHandler uH = new UpgradeHandler(primaryStage, towerMenu, 
-                grass.getTower(), errorMessage);
+            UpgradeHandler uH = new UpgradeHandler(primaryStage, towerMenu, grass.getTower(),
+                    errorMessage, prevPause);
             uH.build();
         }
         

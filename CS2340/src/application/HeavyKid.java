@@ -6,7 +6,7 @@ public class HeavyKid extends Enemy {
     private ImageView icon;
     
     public HeavyKid(Path entry, boolean f) {
-        super(300, 1, entry);
+        super(300, 2, entry);
         if (f) {
             icon = new ImageView("file:src/enemyHeavyKid.png");
             icon.setManaged(false);

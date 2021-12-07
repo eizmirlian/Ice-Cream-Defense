@@ -13,7 +13,7 @@ public class VanillaCatapult extends Tower {
 
     
     public VanillaCatapult(Difficulty diff) {
-        super(diff, description, 100, 3, 25, 2.0);
+        super(diff, description, 100, 3, 35, 3.0);
     }
     @Override
     public Projectile fire() {
@@ -24,7 +24,7 @@ public class VanillaCatapult extends Tower {
 
     @Override
     public void upgrade() {
-        super.setDamage(40);
+        super.setDamage(60);
         super.upgrade();
     }
 
