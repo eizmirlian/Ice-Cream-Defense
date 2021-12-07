@@ -39,7 +39,7 @@ public class FinalBoss extends Enemy {
     }
 
     public boolean goToWinScreen() {
-        return this.health <= 0;
+        return this.getHealth() <= 0;
     }
 
 }

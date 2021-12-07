@@ -30,7 +30,7 @@ public class M6Tests {
     public void eliasDamageFinalBossTest() {
         Path p1 = new Path(0, 0, 0, 0);
         p1.setLastTile(true);
-        Enemy finBoss = new FinalBoss(p1, false)
+        FinalBoss finBoss = new FinalBoss(p1, false);
 
         assertEquals(finBoss.getHealth(), 800);
 
@@ -69,7 +69,7 @@ public class M6Tests {
     public void ethanGoToWinScreenTest() {
         Path p1 = new Path(0, 0, 0, 0);
         p1.setLastTile(true);
-        Enemy finBoss = new FinalBoss(p1, false);
+        FinalBoss finBoss = new FinalBoss(p1, false);
 
         assertEquals(finBoss.getHealth(), 800);
         assertEquals(finBoss.goToWinScreen(), false);
