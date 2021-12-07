@@ -51,9 +51,7 @@ public class GameLoop implements EventHandler<ActionEvent> {
         if (ConfigEventHandler.getTruck().getHealth() <= 0) {
             Level.setPause(true);
             gameOver = true;
-            GameOver g = new GameOver(l.getStage(), Level.getScreenWidth(), 
-                    Level.getScreenHeight());
-            g.show(false);
+            this.lose();
         }
         if (!Level.getPause()) {
             if (gameCounter % 90 == 0 && GameLoop.currWave.hasNext()) {
@@ -78,8 +76,8 @@ public class GameLoop implements EventHandler<ActionEvent> {
                     }
                 }
             }
-            HashMap<Integer, Projectile> temp = 
-                (HashMap<Integer, Projectile>) allProjectiles.clone();
+            HashMap<Integer, Projectile> temp = (HashMap<Integer, Projectile>) allProjectiles
+                    .clone();
             for (int id : temp.keySet()) {
                 Projectile p = allProjectiles.get(id);
                 ImageView icon = p.getIcon();
@@ -114,6 +112,12 @@ public class GameLoop implements EventHandler<ActionEvent> {
         GameOver g = new GameOver(l.getStage(), Level.getScreenWidth(), 
                 Level.getScreenHeight());
         g.show(true);
+    }
+    
+    public void lose() {
+        GameOver g = new GameOver(l.getStage(), Level.getScreenWidth(), 
+                Level.getScreenHeight());
+        g.show(false);
     }
     
     public static GameLoop getInstance() {

@@ -32,14 +32,18 @@ public class FinalBoss extends Enemy {
     public ImageView getIcon() {
         return icon;
     }
+    
+    @Override
+    public void die() {
+        super.die();
+        if (!super.isKilled()) {
+            GameLoop.getInstance().lose();
+        }
+    }
 
     @Override
     public void giveMoney() {
         GameLoop.getInstance().win();
-    }
-
-    public boolean goToWinScreen() {
-        return this.getHealth() <= 0;
     }
 
 }

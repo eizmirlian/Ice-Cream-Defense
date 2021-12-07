@@ -13,14 +13,17 @@ public class Monument {
     
     public void buy(double price) {
         this.money -= price;
+        this.updateLevelText();
     }
 
     public void gainMoney(double money) {
         this.money += money;
+        this.updateLevelText();
     }
     
     public void takeDamage(int dmg) {
         this.health -= dmg;
+        this.updateLevelText();
     }
     
     public double getMoney() {
@@ -41,5 +44,9 @@ public class Monument {
     
     public void setDisplay(boolean displaying) {
         this.displaying = displaying;
+    }
+    
+    private void updateLevelText() {
+        Level.getInstance().updateText();
     }
 }

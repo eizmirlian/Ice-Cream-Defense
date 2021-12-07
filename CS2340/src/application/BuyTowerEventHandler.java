@@ -12,14 +12,16 @@ public class BuyTowerEventHandler implements EventHandler<ActionEvent> {
     private Stage primaryStage;
     private Monument truck;
     private Text error;
+    private boolean prevPause;
     
     public BuyTowerEventHandler(Tower toBuy, Grass location, Stage primaryStage, Monument truck,
-            Text error) {
+            Text error, boolean prevPause) {
         this.toBuy = toBuy;
         this.location = location;
         this.primaryStage = primaryStage;
         this.truck = truck;
         this.error = error;
+        this.prevPause = prevPause;
     }
     
     @Override
@@ -31,6 +33,7 @@ public class BuyTowerEventHandler implements EventHandler<ActionEvent> {
             this.location.getButton().setGraphic(toBuy.getIcon());
             this.toBuy.checkRange();
             Level.addTower(toBuy);
+            Level.setPause(prevPause);
         } else {
             error.setVisible(true);
         }
