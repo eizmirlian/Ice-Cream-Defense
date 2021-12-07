@@ -30,6 +30,7 @@ public class GameOver {
         Text title;
         VBox prompts;
         Text consolation;
+        Monument truck = ConfigEventHandler.getTruck();
         if (win) {
             gameOverPane.setStyle("-fx-background-color: "
                 + "linear-gradient(from 40% 25% to 100% 100%, black, green)");
@@ -37,7 +38,7 @@ public class GameOver {
             title.setStyle("-fx-fill: green;-fx-font: 48px Stencil;");
             prompts = new VBox();
             consolation = new Text("Congrats! You defended your ice cream truck until it was"
-                    + "working again!\nYou can play again or quit!");
+                    + " working again!\nYou can play again or quit!");
             consolation.setStyle("-fx-fill: yellow;-fx-font: 36px Impact;");
             consolation.setTextAlignment(TextAlignment.CENTER);
         } else {
@@ -52,6 +53,14 @@ public class GameOver {
             consolation.setTextAlignment(TextAlignment.CENTER);
         }
         
+        Text stats = new Text("Kids Stopped: " + truck.getEnemiesKilled() + "\nMoney Earned: "
+            + truck.getMoneyEarned() + "\nDamage Taken: " + truck.getDamageTaken());
+        
+        if (win) {
+            stats.setStyle("-fx-fill: yellow;-fx-font: 36px Impact;");
+        } else {
+            stats.setStyle("-fx-fill: orange;-fx-font: 36px Impact;");
+        }
         
         HBox buttons = new HBox();
         Button playAgain = new Button("Play Again");
@@ -70,7 +79,7 @@ public class GameOver {
         });
         buttons.getChildren().addAll(playAgain, quit);
         HBox.setMargin(playAgain, new Insets(12));
-        prompts.getChildren().addAll(consolation, buttons);
+        prompts.getChildren().addAll(stats, consolation, buttons);
         VBox.setMargin(consolation, new Insets(12));
         gameOverPane.setTop(title);
         BorderPane.setAlignment(title, Pos.CENTER);
